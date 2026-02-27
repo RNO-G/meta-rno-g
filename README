@@ -1,0 +1,12 @@
+
+meta-rno-g
+============
+
+This layer contains customizations on top of meta-ampliphy for the RNO-G experiment
+
+It is meant to be used on top of a phytec-headless-image for the AM62X SOM
+
+To use, you probably want to set up the environment as specified on the on the phytec website, then add this layer.
+
+
+Cosmin Deaconu <cozzyd@kicp.uchicago.edu>
