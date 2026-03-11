@@ -19,7 +19,7 @@ do_install() {
 
      # Make sure storage is persistent
       install -d ${D}/etc/systemd/journald.conf.d/
-     install ${WORKDIR}/rno-g-storaged.conf ${D}/etc/systemd/journald.conf.d/
+     install -m 0644 ${WORKDIR}/rno-g-storaged.conf ${D}/etc/systemd/journald.conf.d/
 }
 
 
