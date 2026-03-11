@@ -197,7 +197,7 @@
     >;
   };
 
-  pinctrl_rno_g_gpio1: rno-g-gpio0-pins {
+  pinctrl_rno_g_gpio1: rno-g-gpio1-pins {
     pinctrl-single,pins = <
 		AM62X_IOPAD(0x0178, PIN_INPUT, 7) /* (AC20) RGMII2_TD3.GPIO1_0 */
 		AM62X_IOPAD(0x017c, PIN_INPUT, 7) /* (AD22) RGMII2_RX_CTL.GPIO1_1 */
