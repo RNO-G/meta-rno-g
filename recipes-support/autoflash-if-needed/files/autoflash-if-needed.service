@@ -1,0 +1,11 @@
+[Unit]
+Description=Flash emmc if image exists
+After=local-fs.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/autoflash-if-needed.sh
+StandardOutput=journal+console
+
+[Install]
+WantedBy=multi-user.target

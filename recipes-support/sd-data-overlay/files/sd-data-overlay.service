@@ -1,0 +1,13 @@
+[Unit]
+Description=Ensures data directory on SD card
+BindsTo=mnt-sdcard.mount
+After=mnt-sdcard.mount
+Before=data.mount
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mkdir -p /mnt/sdcard/data
+RemainAfterExit=yes
+
+[Install]
+WantedBy=mnt-sdcard.mount

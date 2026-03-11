@@ -1,0 +1,13 @@
+[Unit]
+Description=Expand Root Filesystem to max
+After=local-fs.target
+Before=multi-user.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/expand-rootfs.sh
+StandardOutput=journal+console
+TimeoutSec=300
+
+[Install]
+WantedBy=multi-user.target

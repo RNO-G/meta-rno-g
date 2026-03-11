@@ -22,10 +22,10 @@
 	model = "RNO-G Controller Board RevN";
 
 	aliases {
+		serial0 = &main_uart2;
 		serial2 = &main_uart0;
-		serial3 = &main_uart2;
-		serial4 = &main_uart3;
-		serial5 = &main_uart4;
+		serial3 = &main_uart3;
+		serial4 = &main_uart4;
 		serial6 = &main_uart6;
 		mmc1 = &sdhci1;
 		usb0 = &usb0;
@@ -34,22 +34,6 @@
     spi2 = &main_spi2;
     ethernet1= &cpsw_port2;
     i2c1 = &main_i2c1;
-	};
-
-	keys {
-		compatible = "gpio-keys";
-		autorepeat;
-		pinctrl-names = "default";
-		pinctrl-0 = <&gpio_keys_pins_default>;
-
-/*
-		key-power {
-			label = "Power Button";
-			linux,code = <KEY_POWER>;
-			gpios = <&main_gpio1 5 GPIO_ACTIVE_HIGH>;
-		};
-    */
-
 	};
 
 	vcc_1v8: regulator-vcc-1v8 {
@@ -84,11 +68,6 @@
 
 &main_pmx0 {
 
-	gpio_keys_pins_default: gpio-keys-default-pins {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x1d4, PIN_INPUT, 7) /* (B15) UART0_RTSn.GPIO1_23 */
-		>;
-	};
 
 	main_i2c1_pins_default: main-i2c1-default-pins {
 		pinctrl-single,pins = <
@@ -126,18 +105,19 @@
 		bootph-pre-ram;
 	};
 
-	main_uart4_pins_default: main-uart4-default-pins {
-		pinctrl-single,pins = <
-			AM62X_IOPAD(0x0124, PIN_INPUT, 3) /* (A23) MMC2_SDCD.UART4_RXD */
-			AM62X_IOPAD(0x0128, PIN_OUTPUT, 3) /* (B23) MMC2_SDWP.UART4_TXD */
-		>;
-		bootph-pre-ram;
-	};
-
 	main_uart3_pins_default: main-uart3-default-pins {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x0c0, PIN_INPUT, 4) /* (W25) VOUT0_DATA2.UART3_RXD */
 			AM62X_IOPAD(0x0c4, PIN_OUTPUT, 4) /* (W24) VOUT0_DATA3.UART3_TXD */
+		>;
+		bootph-pre-ram;
+	};
+
+
+	main_uart4_pins_default: main-uart4-default-pins {
+		pinctrl-single,pins = <
+			AM62X_IOPAD(0x0124, PIN_INPUT, 3) /* (A23) MMC2_SDCD.UART4_RXD */
+			AM62X_IOPAD(0x0128, PIN_OUTPUT, 3) /* (B23) MMC2_SDWP.UART4_TXD */
 		>;
 		bootph-pre-ram;
 	};
@@ -201,6 +181,34 @@
 		>;
 	};
 
+  pinctrl_rno_g_gpio0: rno-g-gpio0-pins {
+    pinctrl-single,pins = <
+			AM62X_IOPAD(0x007c, PIN_INPUT, 7) /* (P25) GPMC0_CLK.GPIO0_31 */
+			AM62X_IOPAD(0x0084, PIN_INPUT, 7) /* (L23) GPMC0_ADVn_ALE.GPIO0_32 */
+			AM62X_IOPAD(0x0088, PIN_INPUT, 7) /* (L24) GPMC0_OEn_REn.GPIO0_33 */
+			AM62X_IOPAD(0x008c, PIN_INPUT, 7) /* (L25) GPMC0_WEn.GPIO0_34 */
+			AM62X_IOPAD(0x0090, PIN_INPUT, 7) /* (M24) GPMC0_BE0n_CLE.GPIO0_35 */
+			AM62X_IOPAD(0x0094, PIN_INPUT, 7) /* (N20) GPMC0_BE1n.GPIO0_36 */
+			AM62X_IOPAD(0x0098, PIN_INPUT, 7) /* (U23) GPMC0_WAIT0.GPIO0_37 */
+			AM62X_IOPAD(0x00a4, PIN_INPUT, 7) /* (M22) GPMC0_DIR.GPIO0_40 */
+			AM62X_IOPAD(0x00b4, PIN_INPUT, 7) /* (K24) GPMC0_CSn3.GPIO0_44 */
+			AM62X_IOPAD(0x00bc, PIN_INPUT, 7) /* (V24) VOUT0_DATA1.GPIO0_46 */
+			AM62X_IOPAD(0x00c8, PIN_INPUT, 7) /* (Y25) VOUT0_DATA4.GPIO0_49 */
+    >;
+  };
+
+  pinctrl_rno_g_gpio1: rno-g-gpio0-pins {
+    pinctrl-single,pins = <
+		AM62X_IOPAD(0x0178, PIN_INPUT, 7) /* (AC20) RGMII2_TD3.GPIO1_0 */
+		AM62X_IOPAD(0x017c, PIN_INPUT, 7) /* (AD22) RGMII2_RX_CTL.GPIO1_1 */
+		AM62X_IOPAD(0x0180, PIN_INPUT, 7) /* (AD23) RGMII2_RXC.GPIO1_2 */
+		AM62X_IOPAD(0x0184, PIN_INPUT, 7) /* (AE23) RGMII2_RD0.GPIO1_3 */
+		AM62X_IOPAD(0x0188, PIN_INPUT, 7) /* (AB20) RGMII2_RD1.GPIO1_4 */
+		AM62X_IOPAD(0x018c, PIN_INPUT, 7) /* (AC21) RGMII2_RD2.GPIO1_5 */
+		AM62X_IOPAD(0x0190, PIN_INPUT, 7) /* (AE22) RGMII2_RD3.GPIO1_6 */
+   >;
+	};
+
 };
 
 &cpsw3g {
@@ -246,7 +254,7 @@
 &main_uart2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_uart2_pins_default>;
-	bootph-pre-ram;
+	bootph-all;
 	status = "okay";
 };
 
@@ -260,7 +268,7 @@
 &main_uart4 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_uart4_pins_default>;
-	bootph-pre-ram;
+	bootph-all;
 	status = "okay";
 };
 
@@ -268,8 +276,8 @@
 
 &main_uart6 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&main_uart3_pins_default>;
-	bootph-pre-ram;
+	pinctrl-0 = <&main_uart6_pins_default>;
+	bootph-all;
 	status = "okay";
 };
 
@@ -293,6 +301,7 @@
 
 &usbss1 {
 	ti,vbus-divider;
+  bootph-all;
 	status = "okay";
 };
 
@@ -318,7 +327,7 @@
 	ti,pindir-d0-out-d1-in = <1>;
 
 	spidev@0 {
-		spi-max-frequency = <24000000>;
+		spi-max-frequency = <48000000>;
 		reg = <0>;
 		compatible = "rohm,dh2228fv";
 	};
@@ -339,3 +348,166 @@
 		compatible = "rohm,dh2228fv";
   };
 };
+
+
+&main_gpio0 {
+
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_rno_g_gpio0>;
+  status = "okay";
+  gpio-line-names =
+   "", /*GPIO0_0*/
+   "", /*GPIO0_1*/
+   "", /*GPIO0_2*/
+   "", /*GPIO0_3*/
+   "", /*GPIO0_4*/
+   "", /*GPIO0_5*/
+   "", /*GPIO0_6*/
+   "", /*GPIO0_7*/
+   "", /*GPIO0_8*/
+   "", /*GPIO0_9*/
+   "", /*GPIO0_10*/
+   "", /*GPIO0_11*/
+   "", /*GPIO0_12*/
+   "", /*GPIO0_13*/
+   "", /*GPIO0_14*/
+   "", /*GPIO0_15*/
+   "", /*GPIO0_16*/
+   "", /*GPIO0_17*/
+   "", /*GPIO0_18*/
+   "", /*GPIO0_19*/
+   "", /*GPIO0_20*/
+   "", /*GPIO0_21*/
+   "", /*GPIO0_22*/
+   "", /*GPIO0_23*/
+   "", /*GPIO0_24*/
+   "", /*GPIO0_25*/
+   "", /*GPIO0_26*/
+   "", /*GPIO0_27*/
+   "", /*GPIO0_28*/
+   "", /*GPIO0_29*/
+   "", /*GPIO0_30*/
+   "AUX3VRF_EN", /*GPIO0_31*/
+   "3V3CAL_EN",  /*GPIO0_32*/
+   "MCU_GPIO0",  /*GPIO0_33*/
+   "5V2_EN",     /*GPIO0_34*/
+   "3V1_GPS_EN", /*GPIO0_35*/
+   "MCU_GPIO2",  /*GPIO0_36*/
+   "AUX5V_EN",   /*GPIO0_37*/
+   "", /*GPIO0_38*/
+   "", /*GPIO0_39*/
+   "5V1_EN", /*GPIO0_40*/
+   "", /*GPIO0_41*/
+   "", /*GPIO0_42*/
+   "", /*GPIO0_43*/
+   "PPS_SELECT", /*GPIO0_44*/
+   "", /*GPIO0_45*/
+   "GPOUT_OD1", /*GPIO0_46*/
+   "", /*GPIO0_47*/
+   "", /*GPIO0_48*/
+   "GPOUT_OD2", /*GPIO0_49*/
+   "", /*GPIO0_50*/
+   "", /*GPIO0_51*/
+   "", /*GPIO0_52*/
+   "", /*GPIO0_53*/
+   "", /*GPIO0_54*/
+   "", /*GPIO0_55*/
+   "", /*GPIO0_56*/
+   "", /*GPIO0_57*/
+   "", /*GPIO0_58*/
+   "", /*GPIO0_59*/
+   "", /*GPIO0_60*/
+   "", /*GPIO0_61*/
+   "", /*GPIO0_62*/
+   "", /*GPIO0_63*/
+   "", /*GPIO0_64*/
+   "", /*GPIO0_65*/
+   "", /*GPIO0_66*/
+   "", /*GPIO0_67*/
+   "", /*GPIO0_68*/
+   "", /*GPIO0_69*/
+   "", /*GPIO0_70*/
+   "", /*GPIO0_71*/
+   "", /*GPIO0_72*/
+   "", /*GPIO0_73*/
+   "", /*GPIO0_74*/
+   "", /*GPIO0_75*/
+   "", /*GPIO0_76*/
+   "", /*GPIO0_77*/
+   "", /*GPIO0_78*/
+   "", /*GPIO0_79*/
+   "", /*GPIO0_80*/
+   "", /*GPIO0_81*/
+   "", /*GPIO0_82*/
+   "", /*GPIO0_83*/
+   "", /*GPIO0_84*/
+   "", /*GPIO0_85*/
+   "", /*GPIO0_86*/
+   "", /*GPIO0_87*/
+   "", /*GPIO0_88*/
+   "", /*GPIO0_89*/
+   "", /*GPIO0_90*/
+   "" /*GPIO0_91*/
+    ;
+};
+
+&main_gpio1 {
+
+  pinctrl-names = "default";
+  pinctrl-0 = <&pinctrl_rno_g_gpio1>;
+  status = "okay";
+  gpio-line-names =
+    "EXT_I2C_EN",  /*GPIO1_0*/
+    "DAQ_A1",     /*GPIO1_1*/
+    "DAQ_B1",     /*GPIO1_2*/
+    "DAQ_B0",     /*GPIO1_3*/
+    "DAQ_A0",     /*GPIO1_4*/
+    "MCU_GPIO3",  /*GPIO1_5*/
+    "NSPI_BUS_EN",/*GPIO1_6*/
+    "", /*GPIO1_7*/
+    "", /*GPIO1_8*/
+    "", /*GPIO1_9*/
+    "", /*GPIO1_10*/
+    "", /*GPIO1_11*/
+    "", /*GPIO1_12*/
+    "", /*GPIO1_13*/
+    "", /*GPIO1_14*/
+    "", /*GPIO1_15*/
+    "", /*GPIO1_16*/
+    "", /*GPIO1_17*/
+    "", /*GPIO1_18*/
+    "", /*GPIO1_19*/
+    "", /*GPIO1_20*/
+    "", /*GPIO1_21*/
+    "", /*GPIO1_22*/
+    "", /*GPIO1_23*/
+    "", /*GPIO1_24*/
+    "", /*GPIO1_25*/
+    "", /*GPIO1_26*/
+    "", /*GPIO1_27*/
+    "", /*GPIO1_28*/
+    "", /*GPIO1_29*/
+    "", /*GPIO1_30*/
+    "", /*GPIO1_31*/
+    "", /*GPIO1_32*/
+    "", /*GPIO1_33*/
+    "", /*GPIO1_34*/
+    "", /*GPIO1_35*/
+    "", /*GPIO1_36*/
+    "", /*GPIO1_37*/
+    "", /*GPIO1_38*/
+    "", /*GPIO1_39*/
+    "", /*GPIO1_40*/
+    "", /*GPIO1_41*/
+    "", /*GPIO1_42*/
+    "", /*GPIO1_43*/
+    "", /*GPIO1_44*/
+    "", /*GPIO1_45*/
+    "", /*GPIO1_46*/
+    "", /*GPIO1_47*/
+    "", /*GPIO1_48*/
+    "", /*GPIO1_49*/
+    "", /*GPIO1_50*/
+    "" /*GPIO1_51*/;
+};
+

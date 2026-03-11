@@ -1,0 +1,13 @@
+[Unit]
+Description=Bind Mount SD Card Data to /data
+BindsTo=sd-data-overlay.service
+After=sd-data-overlay.service
+
+[Mount]
+What=/mnt/sdcard/data
+Where=/data
+Type=none
+Options=bind
+
+[Install]
+WantedBy=mnt-sdcard.mount

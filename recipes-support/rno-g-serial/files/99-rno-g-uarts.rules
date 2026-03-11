@@ -1,0 +1,11 @@
+
+
+SUBSYSTEM=="tty", KERNELS=="2800000.serial", SYMLINK+="ttyConsole"
+
+SUBSYSTEM=="tty", KERNELS=="2802000.serial", SYMLINK+="ttyController", RUN+="/bin/stty -F /dev/ttyController 115200 -echo igncr -inlcr"
+SUBSYSTEM=="tty", KERNELS=="2803000.serial", SYMLINK+="ttyDIDAQ0", RUN+="/bin/stty -F /dev/DIDAQ0 115200 -echo raw"
+SUBSYSTEM=="tty", KERNELS=="2804000.serial", SYMLINK+="ttyGPS", RUN+="/bin/stty -F /dev/ttyGPS 115200 -echo"
+SUBSYSTEM=="tty", KERNELS=="2806000.serial", SYMLINK+="ttyDIDAQ1", RUN+="/bin/stty -F /dev/ttyDIDAQ1 115200 -echo"
+SUBSYSTEM=="tty", ACTION=="add",  ENV{ID_USB_INTERFACE_NUM}=="00", ENV{ID_VENDOR_ID}=="1546", ENV{ID_MODEL_ID}=="01a9", SYMLINK+="ttyGPS-USB"
+
+

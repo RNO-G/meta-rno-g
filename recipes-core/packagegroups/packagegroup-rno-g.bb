@@ -6,5 +6,7 @@ PACKAGE_ARG = "$MACHINE_ARCH"
 inherit packagegroup
 
 RDEPENDS:${PN} = " \
-  rno-g-user \
+  rno-g-user   \
+  rno-g-serial   \
+  rno-g-tweaks \
 "

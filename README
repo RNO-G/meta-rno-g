@@ -2,11 +2,14 @@
 meta-rno-g
 ============
 
-This layer contains customizations on top of meta-ampliphy for the RNO-G experiment
+This layer contains customizations on top of meta-ampliphy/meta-phytec for the RNO-G experiment when using the AM62X SOM
 
-It is meant to be used on top of a phytec-headless-image for the AM62X SOM
+The top-level image is called rno-g-station
 
-To use, you probably want to set up the environment as specified on the on the phytec website, then add this layer.
+To use, you probably want to set up the environment as specified on the on the phytec website, set machine to rno-g-revn, distro to ampliphy, then add this layer.
+
+Then bitbake rno-g-station
+
 
 
 Cosmin Deaconu <cozzyd@kicp.uchicago.edu>
