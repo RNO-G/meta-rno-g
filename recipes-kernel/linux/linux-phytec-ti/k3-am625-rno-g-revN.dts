@@ -387,11 +387,11 @@
    "", /*GPIO0_28*/
    "", /*GPIO0_29*/
    "", /*GPIO0_30*/
-   "AUX3VRF_EN", /*GPIO0_31*/
-   "3V3CAL_EN",  /*GPIO0_32*/
+   "AUX3V_EN",   /*GPIO0_31*/
+   "CAL_EN",     /*GPIO0_32*/
    "MCU_GPIO0",  /*GPIO0_33*/
    "5V2_EN",     /*GPIO0_34*/
-   "3V1_GPS_EN", /*GPIO0_35*/
+   "GPS_EN",     /*GPIO0_35*/
    "MCU_GPIO2",  /*GPIO0_36*/
    "AUX5V_EN",   /*GPIO0_37*/
    "", /*GPIO0_38*/
@@ -457,13 +457,13 @@
   pinctrl-0 = <&pinctrl_rno_g_gpio1>;
   status = "okay";
   gpio-line-names =
-    "EXT_I2C_EN",  /*GPIO1_0*/
+    "EXTI2C_EN",  /*GPIO1_0*/
     "DAQ_A1",     /*GPIO1_1*/
     "DAQ_B1",     /*GPIO1_2*/
     "DAQ_B0",     /*GPIO1_3*/
     "DAQ_A0",     /*GPIO1_4*/
     "MCU_GPIO3",  /*GPIO1_5*/
-    "NSPI_BUS_EN",/*GPIO1_6*/
+    "NSPIBUS_EN", /*GPIO1_6*/
     "", /*GPIO1_7*/
     "", /*GPIO1_8*/
     "", /*GPIO1_9*/
