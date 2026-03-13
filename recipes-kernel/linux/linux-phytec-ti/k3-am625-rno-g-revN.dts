@@ -511,3 +511,8 @@
     "" /*GPIO1_51*/;
 };
 
+
+&gpu
+{
+  status = "disabled";
+};
