@@ -2,13 +2,13 @@
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 
 
-SRC_URI += " file://90-sudoers.cfg"
+SRC_URI += " file://sudogroup"
 
 do_install:append() {
-  install -d ${D}${sysconfdir}/sudoers.d
-  install -m 0600 ${WORKDIR}/90-sudoers.cfg ${D}${sysconfdir}/sudoers.d
+  install -d 0710 ${D}${sysconfdir}/sudoers.d
+  install -m 0440 ${WORKDIR}/90-sudoers.cfg ${D}${sysconfdir}/sudoers.d
 }
 
 
-FILES:${PN}:append = " ${sysconfdir}/sudoers.d/90-sudoers.cfg"
+FILES:${PN}:append = " ${sysconfdir}/sudoers.d/sudogroup"
 
