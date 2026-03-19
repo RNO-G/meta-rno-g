@@ -12,4 +12,5 @@ util-linux perf \
 python3-numpy \
 u-boot-tools libubootenv  \
 man-db jlink uhubctl \
+lmsensors-sensors lmsensors-sensorsdetect \
 "
