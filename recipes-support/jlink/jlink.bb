@@ -3,7 +3,7 @@ SUMMARY = "Segger J-Link Commander and SDK"
 
 LICENSE = "CLOSED"
 
-#LIC_FILES_CHKSUM = "file://Doc/LicenseIncGUI.txt;md5=1c58002b205eaa0d9413d9799665fca2" 
+#LIC_FILES_CHKSUM = "file://Doc/LicenseIncGUI.txt;md5=1c58002b205eaa0d9413d9799665fca2"
 
 JLINK_NAME="JLink_Linux_V928_arm64"
 
@@ -34,6 +34,7 @@ do_install() {
 
 FILES:${PN} += "${sysconfdir}/udev/rules.d/99-jlink.rules"
 
+INSANE_SKIP:${PN} += "already-stripped"
 INSANE_SKIP:${PN} += "ldflags"
 INHIBIT_PACKAGE_STRIP = "1"
 RDEPENDS:${PN} += "libusb1"
