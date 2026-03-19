@@ -11,5 +11,5 @@ chrony \
 util-linux perf \
 python3-numpy \
 u-boot-tools libubootenv  \
-man-db \
+man-db jlink uhubctl \
 "
