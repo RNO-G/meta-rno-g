@@ -149,8 +149,8 @@
 		pinctrl-single,pins = <
 		AM62X_IOPAD(0x01bc, PIN_INPUT, 0)       /* (A14) SPI0_CLK */
 		AM62X_IOPAD(0x01b4, PIN_OUTPUT, 0)      /* (A13) SPI0_CS0 */
-		AM62X_IOPAD(0x01c0, PIN_OUTPUT, 0)      /* (B13) SPI0_D0 */
-		AM62X_IOPAD(0x01c4, PIN_INPUT, 0)       /* (B14) SPI0_D1 */
+		AM62X_IOPAD(0x01c0, PIN_INPUT, 0)      /* (B13) SPI0_D0 */
+		AM62X_IOPAD(0x01c4, PIN_OUTPUT, 0)       /* (B14) SPI0_D1 */
 		>;
 	};
 
@@ -158,8 +158,8 @@
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01b0, PIN_INPUT, 1)       /* (A20, mux1) SPI2_CLK */
 			AM62X_IOPAD(0x01a4, PIN_OUTPUT, 1)      /* (B20, mux1) SPI2_CS1 */
-			AM62X_IOPAD(0x0194, PIN_OUTPUT, 1)      /* (B19, mux1) SPI2_D0 */
-			AM62X_IOPAD(0x0198, PIN_INPUT, 1)       /* (A19, mux1) SPI2_D1 */
+			AM62X_IOPAD(0x0194, PIN_INPUT, 1)      /* (B19, mux1) SPI2_D0 */
+			AM62X_IOPAD(0x0198, PIN_OUTPUT, 1)       /* (A19, mux1) SPI2_D1 */
 		>;
 	};
 
@@ -324,7 +324,6 @@
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_spi0_pins_default>;
-	ti,pindir-d0-out-d1-in = <1>;
 
 	spidev@0 {
 		spi-max-frequency = <50000000>;
@@ -340,7 +339,6 @@
 	status = "okay";
 	pinctrl-names = "default";
 	pinctrl-0 = <&main_spi2_pins_default>;
-	ti,pindir-d0-out-d1-in = <1>;
 
 	spidev@0 {
 		spi-max-frequency = <50000000>;
