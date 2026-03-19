@@ -9,12 +9,13 @@ USERADD_PACKAGES = "${PN}"
 
 RNO_G_PASSWORD_HASH= "\$y\$j9T\$Ww12xETBZp0ojQcBf2iRx1\$IbnSu7woCGB/m7etMKp9wBh8hXKHrlmhLM70DQyMF53"
 
-USERADD_PARAM:${PN} = " -u 1000 -m -d /home/rno-g -s /bin/bash -p '${RNO_G_PASSWORD_HASH}' -G sudo,dialout,spi,i2c,gpio rno-g"
+USERADD_PARAM:${PN} = " -u 1000 -m -d /home/rno-g -s /bin/bash -p '${RNO_G_PASSWORD_HASH}' -G sudo,dialout,spi,i2c,gpio,systemd-journal,adm rno-g"
 
 SRC_URI = "file://authorized_keys"
 
 
 do_install() {
+      chown rno-g:rno-g ${D}/home/rno-g
       install -m 0700 -o rno-g -g rno-g -d ${D}/home/rno-g/.ssh
       install -m 0700 -o rno-g -g rno-g ${WORKDIR}/authorized_keys ${D}/home/rno-g/.ssh
 }
