@@ -20,4 +20,4 @@ do_install() {
 }
 
 FILES:${PN} = "/home/rno-g /home/rno-g/.ssh/authorized_keys"
-RDEPENDS:${PN} = " hw-rules "
+RDEPENDS:${PN} += "hw-groups"
