@@ -13,9 +13,10 @@ IMAGE_INSTALL = " \
   packagegroup-cryptodev \
   packagegroup-rno-g \
   expand-rootfs \
-  chrony \
+  chrony chronyc \
   gpsd \
   mosquitto-clients \
+  vim \
 "
 
 IMAGE_INSTALL:append = "${@bb.utils.contains('IMAGE_FEATURES', 'debug-tweaks', '', ' lockroot', d)}"
