@@ -18,6 +18,9 @@ do_install() {
 
       install -d ${D}${systemd_system_unitdir}
       install -m 0644 ${WORKDIR}/autoflash-if-needed.service ${D}${systemd_system_unitdir}/
+
+      touch ${D}/SDCARD
 }
 
-FILES:${PN} += "${systemd_system_unitdir}/autoflash-if-needed.service"
+FILES:${PN} += " ${systemd_system_unitdir}/autoflash-if-needed.service "
+FILES:${PN} +=  " /SDCARD "
