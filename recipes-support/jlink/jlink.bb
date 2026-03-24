@@ -22,10 +22,19 @@ do_fetch() {
 
 do_install() {
       install -d ${D}${bindir}
-#      install -d ${D}${libdir}
-      cp  ${S}/JLinkGDBServer ${D}${bindir}
-      cp  ${S}/JLinkExe ${D}${bindir}
-#      cp  ${S}/arm/* ${D}${libdir}
+
+#     JLink looks in hardcoded directories for the library
+      install -d ${D}/opt/SEGGER/JLink
+
+      oe_soinstall ${S}/libjlinkarm.so.9.28.0 ${D}/opt/SEGGER/JLink
+
+      install  ${S}/JLinkGDBServer ${D}/opt/SEGGER/JLink
+      install  ${S}/JLinkExe ${D}/opt/SEGGER/JLink
+
+#symlinks to bindir to make it easier to use
+      ln -s /opt/SEGGER/JLink ${D}${bindir}
+      ln -s /opt/SEGGER/JLinkGDBServer ${D}${bindir}
+
 
 			install -d ${D}/${sysconfdir}/udev/rules.d
       install ${S}/99-jlink.rules ${D}/${sysconfdir}/udev/rules.d
@@ -33,8 +42,11 @@ do_install() {
 }
 
 FILES:${PN} += "${sysconfdir}/udev/rules.d/99-jlink.rules"
+FILES:${PN} += "/opt/SEGGER/"
 
+#This recipe is insane
 INSANE_SKIP:${PN} += "already-stripped"
 INSANE_SKIP:${PN} += "ldflags"
+INSANE_SKIP:${PN} += "dev-so"
 INHIBIT_PACKAGE_STRIP = "1"
 RDEPENDS:${PN} += "libusb1"
