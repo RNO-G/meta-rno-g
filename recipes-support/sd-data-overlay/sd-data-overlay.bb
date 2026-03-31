@@ -21,6 +21,7 @@ do_install() {
     install -m 0644 ${WORKDIR}/mnt-sdcard.mount ${D}${systemd_system_unitdir}/
     install -m 0644 ${WORKDIR}/sd-data-overlay.service ${D}${systemd_system_unitdir}/
     install -m 0644 ${WORKDIR}/data.mount ${D}${systemd_system_unitdir}/
+    touch ${D}/INTERNAL
 }
 
 
@@ -30,4 +31,5 @@ FILES:${PN} += " \
     ${systemd_system_unitdir}/mnt-sdcard.mount \
     ${systemd_system_unitdir}/data.mount \
     ${systemd_system_unitdir}/sd-data-overlay.service \
+    /INTERNAL \
 "
