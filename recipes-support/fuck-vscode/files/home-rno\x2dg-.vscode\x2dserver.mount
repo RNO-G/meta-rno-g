@@ -1,0 +1,12 @@
+[Unit]
+Description=Prevent micro$lop bloat from installing random shit
+Before=local-fs.target
+
+[Mount]
+What=tmpfs
+Where=/home/rno-g/.vscode-server
+Type=tmpfs
+Options=ro,noexec,nosuid,size=640k
+
+[Install]
+WantedBy=local-fs.target
