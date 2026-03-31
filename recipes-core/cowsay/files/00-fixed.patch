@@ -1,0 +1,19 @@
+diff --git a/cowsay b/cowsay
+index 900ca46..9c918ce 100755
+--- a/cowsay
++++ b/cowsay
+@@ -1,4 +1,4 @@
+-#%BANGPERL%
++/usr/bin/env perl
+ 
+ ##
+ ## Cowsay 3.03
+@@ -16,7 +16,7 @@ $version = "3.03";
+ $progname = basename($0);
+ $eyes = "oo";
+ $tongue = "  ";
+-$cowpath = $ENV{'COWPATH'} || '%PREFIX%/share/cows';
++$cowpath = $ENV{'COWPATH'} || '/usr/share/cows';
+ @message = ();
+ $thoughts = "";
+ 
