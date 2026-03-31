@@ -64,6 +64,28 @@
 		regulator-always-on;
 		regulator-boot-on;
 	};
+
+  keys {
+    compatible = "gpio-keys";
+    pinctrl-names = "default";
+    pinctrl-0 = <&gpio_keys_pins_default>;
+    power {
+      label = "Power Button";
+      gpios = <&main_gpio0 68 GPIO_ACTIVE_LOW>;
+      linux,code = <KEY_POWER>;
+    };
+  };
+
+
+  /** pps input, for now use gps_ppio */
+  pps {
+    compatible = "pps-gpio";
+    pinctrl-names = "default";
+    pinctrl-0 = <&pps_input_pins>;
+    gpios = <&main_gpio1 25 GPIO_ACTIVE_HIGH>;
+  };
+
+
 };
 
 &main_pmx0 {
@@ -209,6 +231,23 @@
    >;
 	};
 
+  gpio_keys_pins_default: gpio-keys-default-pins {
+        pinctrl-single,pins = <
+        AM62X_IOPAD(0x114, PIN_INPUT, 7) /* (B24) MMC2_DAT0.GPIO_68 */
+    >;
+  };
+
+
+
+/* for now, use gps-ppio for this since need to write a driver to use timer peripheral */
+  pps_input_pins: pps-input-pins {
+    pinctrl-single,pins = <
+      AM62X_IOPAD(0x01dc, PIN_INPUT, 7) /* (E15) MCAN0_RX.GPIO1_25 */
+      >;
+  };
+
+
+
 };
 
 &cpsw3g {
@@ -348,6 +387,7 @@
 };
 
 
+
 &main_gpio0 {
 
   pinctrl-names = "default";
@@ -367,7 +407,7 @@
    "", /*GPIO0_10*/
    "", /*GPIO0_11*/
    "", /*GPIO0_12*/
-   "", /*GPIO0_13*/
+   "HEARTBEAT_LED", /*GPIO0_13*/
    "", /*GPIO0_14*/
    "", /*GPIO0_15*/
    "", /*GPIO0_16*/
@@ -422,7 +462,7 @@
    "", /*GPIO0_65*/
    "", /*GPIO0_66*/
    "", /*GPIO0_67*/
-   "", /*GPIO0_68*/
+   "PWR_BUTTON", /*GPIO0_68*/
    "", /*GPIO0_69*/
    "", /*GPIO0_70*/
    "", /*GPIO0_71*/

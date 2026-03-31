@@ -1,0 +1,80 @@
+From f6950c72c6afe9d6c4d8754094743651a9376c71 Mon Sep 17 00:00:00 2001
+From: Cosmin Deaconu <cozzyd@kicp.uchicago.edu>
+Date: Fri, 20 Mar 2026 23:31:59 -0500
+Subject: [PATCH 2/2] rno-g early boot
+
+just try writing scratch for now
+---
+ arch/arm/mach-k3/am62x/am625_init.c | 42 +++++++++++++++++++++++++++++
+ 1 file changed, 42 insertions(+)
+
+diff --git a/arch/arm/mach-k3/am62x/am625_init.c b/arch/arm/mach-k3/am62x/am625_init.c
+index 498bbe45b38..15a1f46208b 100644
+--- a/arch/arm/mach-k3/am62x/am625_init.c
++++ b/arch/arm/mach-k3/am62x/am625_init.c
+@@ -22,6 +22,8 @@
+ #define REG_K3RTC_KICK0			(RTC_BASE_ADDRESS + 0x70)
+ #define REG_K3RTC_KICK1			(RTC_BASE_ADDRESS + 0x74)
+ 
++#define RTC_SCRATCH0(J)  (RTC_BASE_ADDRESS + 0x30 + J * 4)
++
+ /* Magic values for lock/unlock */
+ #define K3RTC_KICK0_UNLOCK_VALUE	0x83e70b13
+ #define K3RTC_KICK1_UNLOCK_VALUE	0x95a4f1e0
+@@ -182,6 +184,40 @@ static void fixup_a53_cpu_freq_by_speed_grade(void)
+ }
+ #endif
+ 
++#if CONFIG_IS_ENABLED(CONFIG_RNO_G_EARLY_BOOT)
++#define RNO_G_MAGIC_SCRATCH_IDX 7
++#define RNO_G_MAGIC 0xc0fefe
++/** we need to drive low GPIO0_34 and GPIO_40 */
++#define RNO_G_GPIO_SET_DATA_REG 0x600040  /*bank 23*/
++#define RNO_G_GPIO_CLR_DATA_REG 0x600044
++#define RNO_G_GPIO_OUT_DATA_REG 0x60003c
++#define RNO_G_GPIO_DIR_REG 0x600038
++#define RNO_G_GPIO_MASK 0x104  /* bits 2 and 8 */
++
++static void rno_g_early_hook()
++{
++	/*check RTC magic in last scratch registers */
++	u32 rno_g_magic = readl(RTC_SCRATCH0(RNO_G_MAGIC_SCRATCH_IDX));
++
++	if (rno_g_magic != RNO_G_MAGIC) {
++		/* first boot, drive down gpios for 5V enables */
++    /*
++		u32 gpio_val;
++		writel(RNO_G_GPIO_MASK, RNO_G_GPIO_CLR_DATA_REG);
++		writel(0, RNO_G_GPIO_DIR_REG);
++		gpio_val = readl(RNO_G_GPIO_OUT_DATA_REG);
++		gpio_val &= ~(RNO_G_GPIO_MASK);
++		writel(gpio_val, RNO_G_GPIO_OUT_DATA_REG);
++    */
++
++    //write magic to RTC register
++		writel(RNO_G_MAGIC, RTC_SCRATCH0(RNO_G_MAGIC_SCRATCH_IDX));
++	}
++}
++
++
++#endif
++
+ void board_init_f(ulong dummy)
+ {
+ 	struct udevice *dev;
+@@ -201,6 +237,12 @@ void board_init_f(ulong dummy)
+ 
+ 	ctrl_mmr_unlock();
+ 
++
++	/* RNO-G hook here */
++	if (IS_ENABLED(CONFIG_RNO_G_EARLY_BOOT)) {
++		rno_g_early_hook();
++	}
++
+ 	/* Init DM early */
+ 	spl_early_init();
+ 
+-- 
+2.53.0
+
