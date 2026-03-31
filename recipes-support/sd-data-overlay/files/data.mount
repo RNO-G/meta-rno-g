@@ -7,7 +7,7 @@ After=sd-data-overlay.service
 What=/mnt/sdcard/data
 Where=/data
 Type=none
-Options=bind
+Options=bind,defaults
 
 [Install]
 WantedBy=mnt-sdcard.mount
