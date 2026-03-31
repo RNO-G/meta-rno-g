@@ -7,6 +7,7 @@ inherit packagegroup
 
 RDEPENDS:${PN} = " \
   rno-g-user   \
-  rno-g-serial   \
+  rno-g-serial  \
   rno-g-tweaks \
+  fftw sqlite3 gsl \
 "
