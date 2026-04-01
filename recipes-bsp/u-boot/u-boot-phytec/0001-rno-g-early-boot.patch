@@ -25,7 +25,7 @@ index 498bbe45b38..15a1f46208b 100644
  }
  #endif
  
-+#if CONFIG_IS_ENABLED(CONFIG_RNO_G_EARLY_BOOT)
++#if CONFIG_IS_ENABLED(RNO_G_EARLY_BOOT)
 +#define RNO_G_MAGIC_SCRATCH_IDX 7
 +#define RNO_G_MAGIC 0xc0fefe
 +/** we need to drive low GPIO0_34 and GPIO_40 */
@@ -68,7 +68,7 @@ index 498bbe45b38..15a1f46208b 100644
  
 +
 +	/* RNO-G hook here */
-+	if (IS_ENABLED(CONFIG_RNO_G_EARLY_BOOT)) {
++	if (IS_ENABLED(RNO_G_EARLY_BOOT)) {
 +		rno_g_early_hook();
 +	}
 +
