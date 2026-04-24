@@ -51,7 +51,7 @@ do_install() {
 
 # remove references to yocto things
         git  -C ${D}/home/rno-g/repos/${repo} repack -ad
-        rm -f ${D}/home/rno-g/repos/.git/objects/info/alternates
+        rm -f ${D}/home/rno-g/repos/${repo}/.git/objects/info/alternates
 
       done
 
