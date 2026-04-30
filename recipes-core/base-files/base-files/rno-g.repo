@@ -1,0 +1,5 @@
+[rno-g]
+name=RNO-G RPM Repo for EeVanescent Linux
+mirrorlist=file:///etc/yum/repos.d/rno-g.mirrorlist
+enabled=1
+gpgcheck=0
