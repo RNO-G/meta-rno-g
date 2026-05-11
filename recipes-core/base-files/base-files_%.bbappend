@@ -6,8 +6,8 @@ do_install:append() {
     install -m 0644 ${WORKDIR}/issue ${D}${sysconfdir}/issue
     install -m 0644 ${WORKDIR}/issue ${D}${sysconfdir}/issue.net
 
-    install -m 0755 -d  ${D}${sysconfigdir}/yum.repos.d
-    install -m 0644 ${WORKDIR}/rno-g.repo ${D}${sysconfigdir}/yum.repos.d/rno-g.repo
-    install -m 0644 ${WORKDIR}/rno-g.mirrorlist ${D}${sysconfigdir}/yum.repos.d/rno-g.mirrorlist
+    install -m 0755 -d  ${D}${sysconfdir}/yum.repos.d
+    install -m 0644 ${WORKDIR}/rno-g.repo ${D}${sysconfdir}/yum.repos.d/rno-g.repo
+    install -m 0644 ${WORKDIR}/rno-g.mirrorlist ${D}${sysconfdir}/yum.repos.d/rno-g.mirrorlist
 }
 
