@@ -4,12 +4,13 @@ LICENSE="MIT"
 
 inherit packagegroup
 
-PACKAGE_ARCH = "$MACHINE_ARCH"
+PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 RDEPENDS:${PN} = " \
   rno-g-user   \
   rno-g-serial  \
   rno-g-tweaks \
+  rno-g-repo \
   fftw sqlite3 gsl \
   libgpios libgpios-examples \
 "
