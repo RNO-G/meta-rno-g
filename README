@@ -2,13 +2,17 @@
 meta-rno-g
 ============
 
+AKA EeVanescent Linux. 
+
 This layer contains customizations on top of meta-ampliphy/meta-phytec for the RNO-G experiment when using the AM62X SOM
 
-The top-level image is called rno-g-station
+The top-level image is called rno-g-station-sd
 
-To use, you probably want to set up the environment as specified on the on the phytec website, set machine to rno-g-revn, distro to ampliphy, then add this layer.
+To use, you probably want to set up the environment as specified on the on the phytec website, set machine to rno-g-revn, distro to eevanescent, then add this layer.
 
-Then bitbake rno-g-station
+Then bitbake rno-g-station-sd for an SD card image or rno-g-station-emmc for an EMMC image. Note that the SD card is set up as a one-shot flasher.
+
+More documentation forthcoming, someday.
 
 
 
