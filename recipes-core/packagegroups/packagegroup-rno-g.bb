@@ -11,6 +11,7 @@ RDEPENDS:${PN} = " \
   rno-g-serial  \
   rno-g-tweaks \
   rno-g-repo \
+  rno-g-lte \
   fftw sqlite3 gsl \
   libgpios libgpios-examples \
 "

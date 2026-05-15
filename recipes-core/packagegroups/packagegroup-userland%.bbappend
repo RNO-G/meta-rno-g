@@ -12,5 +12,5 @@ python3-numpy python3-smbus python3-cffi python3-pyserial \
 u-boot-tools libubootenv  \
 man-db jlink uhubctl \
 nmap bmon \
-cowsay fuck-vscode nano \
+cowsay fuck-vscode nano smem \
 "
