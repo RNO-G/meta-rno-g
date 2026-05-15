@@ -10,8 +10,8 @@ do_install() {
          install -d ${D}${sysconfdir}/udev/rules.d
          install -m 0644 ${WORKDIR}/99-rno-g-uarts.rules ${D}${sysconfdir}/udev/rules.d/
 
-         install -d ${D}${bindir}
-         install -m 0755 ${WORKDIR}/controller-console ${D}${bindir}
+         install -d ${D}/rno-g/bin
+         install -m 0755 ${WORKDIR}/controller-console ${D}/rno-g/bin
 }
 
-FILES:${PN} += "${sysconfdir}/udev/rules.d/99-rno-g-uarts.rules ${bindir}/controller-console"
+FILES:${PN} += "${sysconfdir}/udev/rules.d/99-rno-g-uarts.rules /rno-g/bin/controller-console"
