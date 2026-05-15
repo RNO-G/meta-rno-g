@@ -1,0 +1,7 @@
+# Force LTE name to be wwan0 for consistency with previous sytems
+[Match]
+Driver=cdc_ncm
+
+[Link]
+Name=wwan0
+
