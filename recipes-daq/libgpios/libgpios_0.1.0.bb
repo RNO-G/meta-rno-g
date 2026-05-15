@@ -6,6 +6,7 @@ PV="0.1.0+git"
 SRC_URI = "git://github.com/cozzyd/libgpios.git;protocol=https;branch=main"
 
 SRCREV = "5d2a750cc0aca9480e1e6b86f6994a425cb1a987"
+DEBIAN_NOAUTONAME:${PN} = "1"
 
 S = "${WORKDIR}/git"
 
