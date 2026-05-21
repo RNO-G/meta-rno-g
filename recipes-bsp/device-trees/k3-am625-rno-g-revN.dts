@@ -179,7 +179,7 @@
 	main_spi2_pins_default: main-spi2-pins-default {
 		pinctrl-single,pins = <
 			AM62X_IOPAD(0x01b0, PIN_INPUT, 1)       /* (A20, mux1) SPI2_CLK */
-			AM62X_IOPAD(0x01a4, PIN_OUTPUT, 1)      /* (B20, mux1) SPI2_CS1 */
+      AM62X_IOPAD(0x01ac, PIN_OUTPUT, 1)      /* (E19) MCASP0_AFSR.SPI2_CS0 */
 			AM62X_IOPAD(0x0194, PIN_INPUT, 1)      /* (B19, mux1) SPI2_D0 */
 			AM62X_IOPAD(0x0198, PIN_OUTPUT, 1)       /* (A19, mux1) SPI2_D1 */
 		>;
