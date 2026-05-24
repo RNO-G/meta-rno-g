@@ -8,6 +8,7 @@ SRC_URI += " file://modprobe-spidev.conf "
 SRC_URI += " file://journald-rno-g-storage.conf "
 SRC_URI += " file://ldconfig-00-rno-g.conf"
 SRC_URI += " file://profile-00-rno-g.sh"
+SRC_URI += " file://logind-allow-linger.conf"
 
 do_install() {
 
@@ -22,8 +23,12 @@ do_install() {
 
 
      # Make sure storage is persistent
-     install -d ${D}/etc/systemd/journald.conf.d/
-     install -m 0644 ${WORKDIR}/journald-rno-g-storage.conf ${D}/etc/systemd/journald.conf.d/rno-g-storage.conf
+     install -d ${D}/${sysconfdir}/systemd/journald.conf.d/
+     install -m 0644 ${WORKDIR}/journald-rno-g-storage.conf ${D}/${sysconfdir}/systemd/journald.conf.d/rno-g-storage.conf
+
+     # Don't kill tmux
+     install -d ${D}/${sysconfdir}/systemd/logind.conf.d/
+     install -m 0644 ${WORKDIR}/logind-allow-linger.conf ${D}/etc/${sysconfdir}/logind.conf.d/allow-linger.conf
 
      # correct path
      install -d ${D}/etc/profile.d/
@@ -37,6 +42,7 @@ do_install() {
 
 FILES:${PN} = " ${sysconfdir}/modprobe.d/spidev.conf "
 FILES:${PN} += " ${sysconfdir}/sysctl.d/99-rno-g-net.conf "
-FILES:${PN} += " ${sysconfdir}/systemd/journald.conf.d/rno-g-storage.conf "
+FILES:${PN} += " ${sysconfdir}/${sysconfdir}/journald.conf.d/rno-g-storage.conf "
+FILES:${PN} += " ${sysconfdir}/${sysconfdir}/logind.conf.d/allow-linger.conf "
 FILES:${PN} += " ${sysconfdir}/profile.d/00-rno-g.sh "
 FILES:${PN} += " ${sysconfdir}/ld.so.conf.d/00-rno-g.conf "
