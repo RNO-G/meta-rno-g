@@ -28,7 +28,7 @@ do_install() {
 
      # Don't kill tmux
      install -d ${D}/${sysconfdir}/systemd/logind.conf.d/
-     install -m 0644 ${WORKDIR}/logind-allow-linger.conf ${D}/etc/${sysconfdir}/logind.conf.d/allow-linger.conf
+     install -m 0644 ${WORKDIR}/logind-allow-linger.conf ${D}/${sysconfdir}/logind.conf.d/allow-linger.conf
 
      # correct path
      install -d ${D}/etc/profile.d/
@@ -39,6 +39,16 @@ do_install() {
      install -m 0644 ${WORKDIR}/ldconfig-00-rno-g.conf ${D}/etc/ld.so.conf.d/00-rno-g.conf
 }
 
+
+# Make sure systemd-logind gets configuration change
+pkg_postinst:${PN}() {
+    # Check if we are running on the live target (not during offline image construction)
+    if [ -z "$D" ]; then
+        if systemctl is-active --quiet systemd-logind.service; then
+            systemctl try-restart systemd-logind.service || :
+       fi
+    fi
+}
 
 FILES:${PN} = " ${sysconfdir}/modprobe.d/spidev.conf "
 FILES:${PN} += " ${sysconfdir}/sysctl.d/99-rno-g-net.conf "
