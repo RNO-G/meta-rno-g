@@ -7,5 +7,6 @@ SUBSYSTEM=="tty", KERNELS=="2830000.serial", SYMLINK+="ttyDIDAQ0", RUN+="/bin/st
 SUBSYSTEM=="tty", KERNELS=="2840000.serial", SYMLINK+="ttyGPS", RUN+="/bin/stty -F /dev/ttyGPS 115200 -echo"
 SUBSYSTEM=="tty", KERNELS=="2860000.serial", SYMLINK+="ttyDIDAQ1", RUN+="/bin/stty -F /dev/ttyDIDAQ1 115200 -echo"
 SUBSYSTEM=="tty", ACTION=="add",  ENV{ID_USB_INTERFACE_NUM}=="00", ENV{ID_VENDOR_ID}=="1546", ENV{ID_MODEL_ID}=="01a9", SYMLINK+="ttyGPS-USB"
+SUBSYSTEM=="tty", ACTION=="add",  ENV{ID_VENDOR_ID}=="0403", ENV{ID_MODEL_ID}=="6015", SYMLINK+="ttyDIDAQ"
 
 

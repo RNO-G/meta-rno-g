@@ -14,4 +14,5 @@ RDEPENDS:${PN} = " \
   rno-g-lte \
   fftw sqlite3 gsl \
   libgpios libgpios-examples \
+  libdidaq libdidaq-examples \
 "
