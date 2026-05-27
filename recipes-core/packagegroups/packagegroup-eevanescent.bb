@@ -1,8 +1,18 @@
+DESCRIPTION = "EeVanescent included packages"
+LICENSE="MIT"
 
-RDEPENDS:${PN} += "\
+
+PR="r0"
+
+inherit packagegroup
+
+PACKAGE_ARCH = "${MACHINE_ARCH}"
+
+RDEPENDS:${PN} = " \
 git \
 curl wget \
 valgrind \
+fftw sqlite3 gsl \
 gps-utils \
 sudo \
 tmux screen minicom \
@@ -13,4 +23,6 @@ u-boot-tools libubootenv  \
 man-db jlink uhubctl \
 nmap bmon \
 cowsay fuck-vscode nano smem \
+libgpios libgpios-examples
 "
+

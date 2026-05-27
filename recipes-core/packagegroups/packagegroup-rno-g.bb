@@ -2,6 +2,8 @@ DESCRIPTION = "RNO-G specific packages"
 LICENSE="MIT"
 
 
+PR="r1"
+
 inherit packagegroup
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
@@ -12,8 +14,7 @@ RDEPENDS:${PN} = " \
   rno-g-tweaks \
   rno-g-repo \
   rno-g-lte \
-  fftw sqlite3 gsl \
-  libgpios libgpios-examples \
   libdidaq libdidaq-examples \
   rno-g-loader \
 "
+
