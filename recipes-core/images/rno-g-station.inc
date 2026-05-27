@@ -9,15 +9,12 @@ IMAGE_INSTALL = " \
   packagegroup-core-boot \
   packagegroup-hwtools \
   packagegroup-userland \
+  packagegroup-eevanescent \
   packagegroup-userland-flashing \
-  packagegroup-cryptodev \
   packagegroup-rno-g \
-  expand-rootfs \
   chrony chronyc \
-  gpsd \
-  mosquitto-clients \
-  vim \
-"
+  expand-rootfs \
+  "
 
 IMAGE_INSTALL:append = "${@bb.utils.contains('IMAGE_FEATURES', 'debug-tweaks', '', ' lockroot', d)}"
 

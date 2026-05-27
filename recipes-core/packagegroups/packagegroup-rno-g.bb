@@ -16,5 +16,6 @@ RDEPENDS:${PN} = " \
   rno-g-lte \
   libdidaq libdidaq-examples \
   rno-g-loader \
+  packagegroup-eevanescent \
 "
 

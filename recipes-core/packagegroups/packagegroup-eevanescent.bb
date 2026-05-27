@@ -9,11 +9,11 @@ inherit packagegroup
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 RDEPENDS:${PN} = " \
-git \
+git vim \
 curl wget \
 valgrind \
 fftw sqlite3 gsl \
-gps-utils \
+gpsd gps-utils \
 sudo \
 tmux screen minicom \
 cpufrequtils \
@@ -23,7 +23,8 @@ u-boot-tools libubootenv  \
 man-db jlink uhubctl \
 nmap bmon \
 cowsay fuck-vscode nano smem \
-libgpios libgpios-examples\
-lsof\
+libgpios libgpios-examples \
+lsof \
+mosquitto-clients \
 "
 
