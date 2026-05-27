@@ -23,6 +23,7 @@ u-boot-tools libubootenv  \
 man-db jlink uhubctl \
 nmap bmon \
 cowsay fuck-vscode nano smem \
-libgpios libgpios-examples
+libgpios libgpios-examples\
+lsof\
 "
 
