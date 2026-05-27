@@ -26,9 +26,9 @@ do_install() {
      install -d ${D}/${sysconfdir}/systemd/journald.conf.d/
      install -m 0644 ${WORKDIR}/journald-rno-g-storage.conf ${D}/${sysconfdir}/systemd/journald.conf.d/rno-g-storage.conf
 
-     # Don't kill tmux
+     # Don't kill tmux with login
      install -d ${D}/${sysconfdir}/systemd/logind.conf.d/
-     install -m 0644 ${WORKDIR}/logind-allow-linger.conf ${D}/${sysconfdir}/logind.conf.d/allow-linger.conf
+     install -m 0644 ${WORKDIR}/logind-allow-linger.conf ${D}/${sysconfdir}/systemd/logind.conf.d/99-allow-linger.conf
 
      # correct path
      install -d ${D}/etc/profile.d/
@@ -37,6 +37,8 @@ do_install() {
      # correct ldconfig
      install -d ${D}/etc/ld.so.conf.d/
      install -m 0644 ${WORKDIR}/ldconfig-00-rno-g.conf ${D}/etc/ld.so.conf.d/00-rno-g.conf
+
+
 }
 
 
@@ -52,7 +54,7 @@ pkg_postinst:${PN}() {
 
 FILES:${PN} = " ${sysconfdir}/modprobe.d/spidev.conf "
 FILES:${PN} += " ${sysconfdir}/sysctl.d/99-rno-g-net.conf "
-FILES:${PN} += " ${sysconfdir}/${sysconfdir}/journald.conf.d/rno-g-storage.conf "
-FILES:${PN} += " ${sysconfdir}/${sysconfdir}/logind.conf.d/allow-linger.conf "
+FILES:${PN} += " ${sysconfdir}/systemd/journald.conf.d/rno-g-storage.conf "
+FILES:${PN} += " ${sysconfdir}/systemd/logind.conf.d/99-allow-linger.conf "
 FILES:${PN} += " ${sysconfdir}/profile.d/00-rno-g.sh "
 FILES:${PN} += " ${sysconfdir}/ld.so.conf.d/00-rno-g.conf "
