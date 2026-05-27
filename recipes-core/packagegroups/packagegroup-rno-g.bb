@@ -2,7 +2,7 @@ DESCRIPTION = "RNO-G specific packages"
 LICENSE="MIT"
 
 
-PR="r1"
+PR="r2"
 
 inherit packagegroup
 
