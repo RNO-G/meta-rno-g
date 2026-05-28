@@ -1,7 +1,24 @@
-trap 'echo "exiting..."' SIGINT SIGTERM 
+#! /bin/bash
 
-cat /dev/ttyController & 
-BGPID=$! 
-echo "Controller Board Console, BGPID=$BGPID"
-cat > /dev/ttyController
+# the TTY we are using
+TTY=/dev/ttyController
+
+exec {controller_fd}<>${TTY}
+
+flock -n ${controller_fd} ||
+{
+  echo "${TTY} is open by another process " > &2;
+  lslocks ;
+  exit 1;
+}
+
+trap 'echo "exiting..."' SIGINT SIGTERM
+
+cat ${TTY} &
+BGPID=$!
+echo "[ RNO-G Controller Board Console, BGPID=$BGPID ]"
+cat > ${TTY}
 kill -TERM ${BGPID}
+flock -u ${controller_fd}
+echo "...bye"
+
