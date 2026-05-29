@@ -5,20 +5,23 @@ TTY=/dev/ttyController
 
 exec {controller_fd}<>${TTY}
 
+# advisory lock
 flock -n ${controller_fd} ||
 {
-  echo "${TTY} is open by another process " > &2;
+  echo "${TTY} is open by another process " >&2;
   lslocks ;
   exit 1;
 }
 
-trap 'echo "exiting..."' SIGINT SIGTERM
 
-cat ${TTY} &
-BGPID=$!
-echo "[ RNO-G Controller Board Console, BGPID=$BGPID ]"
-cat > ${TTY}
-kill -TERM ${BGPID}
+#trap ctrl-c
+trap  'echo "exiting..."'  SIGINT SIGTERM
+
+
+# make sure killing this shell kills cat
+
+echo "[[ RNO-G Controller Board Console ]]"
+rlwrap -e '' -C controller-console -b $'' -f /rno-g/share/controller-keywords socat - ${TTY}
 flock -u ${controller_fd}
 echo "...bye"
 
