@@ -1,0 +1,10 @@
+[Unit]
+Description=Set GPIO low
+
+[Service]
+ExecStart=/usr/bin/gpioset %i=0
+ExecStopPost=/usr/bin/gpioget %i
+
+[Install]
+WantedBy=multi-user.target
+

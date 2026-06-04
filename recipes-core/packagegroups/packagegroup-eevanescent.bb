@@ -27,5 +27,6 @@ libgpios libgpios-examples \
 lsof \
 mosquitto-clients \
 emmcparm sbdm-cli \
+gpioset-service \
 "
 
