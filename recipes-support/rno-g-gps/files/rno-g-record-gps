@@ -1,0 +1,20 @@
+#! /bin/bash
+
+DESTDIR=/data/gps/
+DURATION=3600
+
+NOT_DEAD_YET=1
+
+trap "NOT_DEAD_YET=0 ; echo stopping gpspipe... " SIGTERM SIGINT ;
+
+while [ $NOT_DEAD_YET -eq 1 ]  ;
+do
+  now=`date`
+  folder=`date -d "$now" +"%Y-%m-%d"`
+  fname=`date -d "$now" +"%H%M%S"`
+  mkdir -p ${DESTDIR}/$folder/
+  output=${DESTDIR}/$folder/$fname
+  echo "Writing to $output"
+  timeout --signal=SIGINT $DURATION gpsipe -R | zstd -q -o $output
+done
+

@@ -1,0 +1,15 @@
+#! /usr/bin/sh
+
+source /etc/profile.d/10-ubx-env.sh
+
+# make sure PPS is on (and will socket-activate gpsd)
+ubxtool -z CFG-TP-LEN_TP1,10000,7 
+
+# set baud rate to 115200
+gpsctl -s 115200 /dev/ttyGPS
+
+#enable binary mode, etc.
+ubxtool -d NMEA
+ubxtool -e BINARY 
+ubxtool -e RAWX 
+
