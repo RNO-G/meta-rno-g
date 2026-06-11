@@ -2,7 +2,7 @@ DESCRIPTION = "RNO-G specific packages"
 LICENSE="MIT"
 
 
-PR="r2"
+PR="r3"
 
 inherit packagegroup
 
@@ -14,6 +14,7 @@ RDEPENDS:${PN} = " \
   rno-g-tweaks \
   rno-g-repo \
   rno-g-lte \
+  rno-g-gps \
   libdidaq libdidaq-examples \
   rno-g-loader \
   packagegroup-eevanescent \
