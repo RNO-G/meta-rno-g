@@ -28,5 +28,6 @@ lsof \
 mosquitto-clients \
 emmcparm sbdm-cli \
 gpioset-service \
+cockpit \
 "
 
