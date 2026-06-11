@@ -1,0 +1,11 @@
+[Unit]
+Description=Create directory as rno-g user
+
+[Service]
+ExecStart=/usr/bin/install -o rno-g -d %i
+Type=oneshot
+RemainAfterExit=true
+
+[Install]
+WantedBy=multi-user.target
+
