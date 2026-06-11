@@ -28,6 +28,6 @@ lsof \
 mosquitto-clients \
 emmcparm sbdm-cli \
 gpioset-service \
-cockpit \
+cockpit-ws cockpit-systemd cockpit-shell \
 "
 
