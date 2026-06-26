@@ -2,18 +2,55 @@
 meta-rno-g
 ============
 
-AKA EeVanescent Linux. 
-
-This layer contains customizations on top of meta-ampliphy/meta-phytec for the RNO-G experiment when using the AM62X SOM
-
-The top-level image is called rno-g-station-sd
-
-To use, you probably want to set up the environment as specified on the on the phytec website, set machine to rno-g-revn, distro to eevanescent, then add this layer.
-
-Then bitbake rno-g-station-sd for an SD card image or rno-g-station-emmc for an EMMC image. Note that the SD card is set up as a one-shot flasher.
-
-More documentation forthcoming, someday.
-
-
-
 Cosmin Deaconu <cozzyd@kicp.uchicago.edu>
+
+AKA EeVanescent Linux.
+
+This layer contains customizations on top of vendor layers meta-ampliphy/meta-phytec for the RNO-G experiment when using the AM62X SOM
+
+The top-level image is called rno-g-station-sd  (rno-g-station-emmc is also available, but gets backed into rno-g-station-sd)
+
+
+
+
+setup from scratch
+=====================
+
+First instructions are from the vendor BSP (https://docs.phytec.com/projects/yocto-phycore-am62x/en/bsp-yocto-ampliphy-am62x-pd25.1.1/developingwithyocto/buildBSP.html)
+
+Basically:
+
+ -  make directory you will use (e.g. yocto-25.1.1). This will be called YOCTODIR later.
+ -  pull the podman/docker image that you can use:
+   podman pull docker.io/phybuilder/yocto-ubuntu-22.04
+ - inside  YOCTODIR, start bash inside the image  (I have a script that does this since it's a mouthful.) Note that /home:/home may not be the right volume depending on where you put your directory.
+    podman run --rm=true -v /home:/home -v "$SSH_AUTH_SOCK:/ssh-agent" -e SSH_AUTH_SOCK=/ssh-agent -e USER=$USER --userns=keep-id --workdir=$PWD --pids-limit=-1 -it docker.io/phybuilder/yocto-ubuntu-22.04 bash
+ -  inside the container and YOCTODIR, initialize most of the layers
+    phyLinux init -p am62x -r BSP-Yocto-Ampliphy-AM62x-PD25.1.1
+    - this will prompt about machine and distro. We will override those so you can write whatever
+
+-  as instructed, you can
+    source sources/poky/oe-init-build-env
+
+- under  sources, clone github.com:rno-g/meta-rno-g
+
+- Grab anythings we can't easily freely redistribute using scripts/copy-proprietary.sh under meta-rno-g (should be run from inside meta-rno-g directory). this assumes you have access to repo account on rno-g.uchicago.edu (which you can get and you'll need to deploy rpms also)
+
+-  modify conf/bblayers.conf to add meta-rno-g to the layers
+ (i.e. add )
+   ${OEROOT}/../meta-rno-g \
+ this may change, but for now you also need meta-webserver as I attempt to get cockpit working
+  ${OEROOT}/../meta-openembedded/meta-webserver \
+
+-  modify conf/local.conf as follows:
+    - change MACHINE to rno-g-revn
+    - change DISTRO  to eevanescent
+    - remove debug-tweaks from EXTRA_IMAGE_FEATURES
+
+
+- With some luck you can do `bitbake rno-g-station-sd` and some time later you'll have some disk images
+
+- You can build random packages (even if not part of the image) too
+
+- Under meta-rno-g/scripts there is a script to deploy rpm packages (should probably be called from build directory) to rno-g.uchicago.edu
+
