@@ -17,4 +17,4 @@ echo "Running creatrepo..."
 # Generate a single unified package index using host tools
 # (Requires 'createrepo_c' or 'createrepo' installed on host)
 createrepo_c --update "${FLAT_REPO_DIR}"
-rsync -avh -P repo/ rno-g.uchicago.edu:/repo/eevanescent/26/
+rsync -avh -P ${FLAT_REPO_DIR}/ repo@rno-g.uchicago.edu:/repo/eevanescent/26/
