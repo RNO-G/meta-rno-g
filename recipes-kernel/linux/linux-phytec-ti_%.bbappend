@@ -3,7 +3,7 @@ COMPATIBLE_MACHINE:rno-g-revn = "rno-g-revn"
 FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 FILESEXTRAPATHS:prepend := "${THISDIR}/../../recipes-bsp/device-trees/:"
 
-PR .= ".1"
+PR .= ".2"
 
 SRC_URI += " file://k3-am625-rno-g-revN.dts "
 SRC_URI += " file://moar_uarts.cfg "
