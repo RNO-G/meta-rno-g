@@ -15,6 +15,7 @@ RDEPENDS:${PN} = " \
   rno-g-repo \
   rno-g-lte \
   rno-g-gps \
+  rno-g-scripts \
   libdidaq libdidaq-examples \
   rno-g-loader \
   packagegroup-eevanescent \
