@@ -10,6 +10,7 @@ SRC_URI += " file://ldconfig-00-rno-g.conf"
 SRC_URI += " file://profile-00-rno-g.sh"
 SRC_URI += " file://logind-allow-linger.conf"
 SRC_URI += " file://sudo-provide-rno-g"
+SRC_URI += " file://rno-g-tweaks.vim"
 
 do_install() {
 
@@ -43,6 +44,11 @@ do_install() {
      install -d ${D}/etc/sudoers.d
      install -m 0644 ${WORKDIR}/sudo-provide-rno-g ${D}/etc/sudoers.d/provide-rno-g
 
+     #.vim settings
+     install -d ${D}${datadir}/vim/vimfiles/plugin
+     install -m 0644 ${WORKDIR}/rno-g-tweaks.vim ${D}${datadir}/vim/vimfiles/plugin/rno-g-tweaks.vim
+
+
 }
 
 
@@ -63,3 +69,4 @@ FILES:${PN} += " ${sysconfdir}/systemd/logind.conf.d/99-allow-linger.conf "
 FILES:${PN} += " ${sysconfdir}/profile.d/00-rno-g.sh "
 FILES:${PN} += " ${sysconfdir}/ld.so.conf.d/00-rno-g.conf "
 FILES:${PN} += " ${sysconfdir}/sudoers.d/provide-rno-g "
+FILES:${PN} += " ${datadir}/vim/vimfiles/plugin/rno-g-tweaks.vim "
