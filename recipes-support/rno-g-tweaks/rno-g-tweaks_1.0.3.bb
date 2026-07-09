@@ -2,6 +2,8 @@ SUMMARY = "Sysctl/modprobe tweaks for rno-g hardware"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
+inherit python3targetconfig
+
 
 SRC_URI =  " file://sysctl-99-rno-g-net.conf "
 SRC_URI += " file://modprobe-spidev.conf "
@@ -11,6 +13,8 @@ SRC_URI += " file://profile-00-rno-g.sh"
 SRC_URI += " file://logind-allow-linger.conf"
 SRC_URI += " file://sudo-provide-rno-g"
 SRC_URI += " file://rno-g-tweaks.vim"
+
+RNO_G_SITE_PACKAGES="/rno-g/lib/python${PYTHON_BASEVERSION}/site-packages/"
 
 do_install() {
 
@@ -35,6 +39,10 @@ do_install() {
      # correct path
      install -d ${D}/etc/profile.d/
      install -m 0644 ${WORKDIR}/profile-00-rno-g.sh ${D}/etc/profile.d/00-rno-g.sh
+
+     # append correct pythonpath to profile
+     echo "export PYTHONPATH=\"\$PYTHONPATH:${RNO_G_SITE_PACKAGES}\"" >> ${D}/etc/profile.d/00-rno-g.sh
+
 
      # correct ldconfig
      install -d ${D}/etc/ld.so.conf.d/
