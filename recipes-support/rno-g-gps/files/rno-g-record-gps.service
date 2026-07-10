@@ -1,6 +1,6 @@
 [Unit]
 Description=Record GNSS data
-After=gpsd.service rno-g-create-dir@/data/gps.service
+After=gpsd.service rno-g-create-dir@-data-gps.service
 Requires=gpsd.service
 
 [Service]
