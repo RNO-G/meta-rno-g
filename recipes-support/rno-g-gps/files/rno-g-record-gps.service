@@ -5,7 +5,7 @@ Requires=gpsd.service
 
 [Service]
 ExecStartPre=/bin/sleep 3
-ExecStart=/rno-g/bin/rno-g-record-gps.sh
+ExecStart=/rno-g/bin/rno-g-record-gps
 RestartSec=3
 
 [Install]
