@@ -2,7 +2,7 @@
 Description=Create directory as rno-g user
 
 [Service]
-ExecStart=/usr/bin/install -o rno-g -d %i
+ExecStart=/usr/bin/install -o rno-g -d %I
 Type=oneshot
 RemainAfterExit=true
 
