@@ -13,8 +13,8 @@ do
   folder=`date -d "$now" +"%Y-%m-%d"`
   fname=`date -d "$now" +"%H%M%S"`
   mkdir -p ${DESTDIR}/$folder/
-  output=${DESTDIR}/$folder/$fname
+  output=${DESTDIR}/$folder/$fname.zst
   echo "Writing to $output"
-  timeout --signal=SIGINT $DURATION gpsipe -R | zstd -q -o $output
+  timeout --signal=SIGINT $DURATION gpspipe -R | zstd -q -o $output
 done
 
