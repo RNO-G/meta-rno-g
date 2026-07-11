@@ -7,6 +7,7 @@ Requires=gpsd.service
 ExecStartPre=/bin/sleep 3
 ExecStart=/rno-g/bin/rno-g-record-gps
 RestartSec=3
+User=rno-g
 
 [Install]
 WantedBy=multi-user.target
