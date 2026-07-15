@@ -1,7 +1,7 @@
 [Unit]
 Description=Record GNSS data
 After=gpsd.service create-rno-g-dir@-data-gps.service
-Requires=gpsd.service
+Requires=gpsd.service create-rno-g-dir@-data-gps.service
 
 [Service]
 ExecStartPre=/bin/sleep 3

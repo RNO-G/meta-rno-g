@@ -2,9 +2,9 @@ SUMMARY = "GPS stuff for RNO-G RevN"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-PR="r8"
+PR="r10"
 
-SRC_URI = "file://10-ubx-setup.conf file://10-ubx-env.sh file://rno-g-gps-setup file://rno-g-record-gps file://rno-g-record-gps.service"
+SRC_URI = "file://10-ubx-setup.conf file://10-ubx-env.sh file://rno-g-gps-setup file://rno-g-record-gps file://rno-g-record-gps.service file://rotatelogs-compress-helper"
 
 inherit systemd
 
@@ -30,11 +30,12 @@ do_install() {
 # record service
          install -d ${D}${systemd_system_unitdir}
          install -m 0755 ${WORKDIR}/rno-g-record-gps ${D}/rno-g/bin
+         install -m 0755 ${WORKDIR}/rotatelogs-compress-helper ${D}/rno-g/bin
          install -m 0644 ${WORKDIR}/rno-g-record-gps.service ${D}${systemd_system_unitdir}
 
 
 }
 
-FILES:${PN} += "  /rno-g/bin/rno-g-gps-setup /rno-g/bin/rno-g-record-gps ${sysconfdir}/systemd/system/gpsd.service.d/10-ubx-setup.conf ${sysconfdir}/profile.d/10-ubx-env.sh "
+FILES:${PN} += "  /rno-g/bin/rno-g-gps-setup /rno-g/bin/rno-g-record-gps ${sysconfdir}/systemd/system/gpsd.service.d/10-ubx-setup.conf ${sysconfdir}/profile.d/10-ubx-env.sh /rno-g/bin/rotatelogs-compress-helper"
 
-RDEPENDS:${PN} +=" gpsd gps-utils gpioset-service bash zstd create-rno-g-dir-service  "
+RDEPENDS:${PN} +=" gpsd gps-utils gpioset-service bash zstd create-rno-g-dir-service apache2 "
