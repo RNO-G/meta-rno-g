@@ -1,0 +1,13 @@
+#! /bin/sh
+
+# this is a program meant to be invoked from rotatelogs. rotatelogs will give the rotated-from file (if it exists) as the second argument
+
+compressme="${2}"
+compresscmd="zstd --rm"
+
+mkdir -p `dirname ${1}`
+
+if [[ "${compressme}" ]]; then
+  ${compresscmd} ${compressme}
+fi
+
