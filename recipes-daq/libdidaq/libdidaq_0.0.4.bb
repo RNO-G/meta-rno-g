@@ -26,6 +26,6 @@ do_install() {
 PACKAGES =+ " ${PN}-examples "
 DEPENDS = " libgpios "
 
-FILES:${PN}          = "/rno-g/lib/libdidaq.so.0.0.3 /rno-g/lib/libdidaq.so.0"
-FILES:${PN}-dev      = "/rno-g/include/didaq.h /rno-g/include/didaq_regs.h /rno-g/lib/libdidaq.so"
-FILES:${PN}-examples = "/rno-g/bin/didaq-dump /rno-g/bin/didaq-get-scalers /rno-g/bin/didaq-wfs /rno-g/bin/didaq-wfs-csv /rno-g/bin/didaq-coin-thresh-scan /rno-g/bin/didaq-beam-thresh-scan"
+FILES:${PN}          = "/rno-g/lib/libdidaq.so.0.0.4 /rno-g/lib/libdidaq.so.0"
+FILES:${PN}-dev      = "/rno-g/include/didaq.h /rno-g/include/didaq_regs.h  /rno-g/include/didaq_adc.h /rno-g/lib/libdidaq.so"
+FILES:${PN}-examples = "/rno-g/bin/didaq-dump /rno-g/bin/didaq-get-scalers /rno-g/bin/didaq-wfs /rno-g/bin/didaq-wfs-csv /rno-g/bin/didaq-coin-thresh-scan /rno-g/bin/didaq-beam-thresh-scan /rno-g/bin/didaq-adc-reg"
