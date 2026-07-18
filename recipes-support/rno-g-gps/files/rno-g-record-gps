@@ -3,7 +3,7 @@
 DESTDIR=/data/gps/
 DURATION=3600
 
-gpspipe -R | rotatelogs -p "/rno-g/bin/rotatelogs-compress-helper" ${DESTDIR}/%Y-%m-%d/%H%M%S.gps ${DURATION}
+gpspipe -R | rotatelogs -D -p /rno-g/bin/rotatelogs-compress-helper ${DESTDIR}/%Y-%m-%d/%H%M%S.gps ${DURATION}
 
 
 

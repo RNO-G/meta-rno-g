@@ -5,7 +5,6 @@
 compressme="${2}"
 compresscmd="zstd --rm"
 
-mkdir -p `dirname ${1}`
 
 if [[ "${compressme}" ]]; then
   ${compresscmd} ${compressme}
