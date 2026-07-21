@@ -244,6 +244,7 @@ if __name__=="__main__":
             while acm is None:
                try: 
                    print("Opening serial") 
+                   time.sleep(10)
                    open_serial()
                    time.sleep(3) 
                    check_ok("AT\r\n") 
