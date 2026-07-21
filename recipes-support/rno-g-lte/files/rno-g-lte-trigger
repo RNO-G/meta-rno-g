@@ -1,7 +1,12 @@
-#! /bin/sh 
-# this just exits sleep early on the lte daemon
+#! /bin/sh
 
-systemctl reload rno-g-lted || /rno-g/bin/setup-lte
+if systemctl show rno-g-lted.service --property=ActiveState | grep -Eq "ActiveState=(active|activating)"; then
+# this just exits sleep early on the lte daemon
+  systemctl reload rno-g-lted.service
+else
+#service not running, manually run setup script in background
+  /rno-g/bin/setup-lte  &
+fi
 
 
 
