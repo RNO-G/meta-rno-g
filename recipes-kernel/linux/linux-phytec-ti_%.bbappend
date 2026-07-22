@@ -10,6 +10,7 @@ SRC_URI += " file://moar_uarts.cfg "
 SRC_URI += " file://0001-no-pb.patch "
 SRC_URI += " file://pps-gpio.cfg "
 SRC_URI += " file://w1-plz.cfg "
+SRC_URI += " file://bbr.cfg "
 
 do_configure:append() {
       cp ${WORKDIR}/k3-am625-rno-g-revN.dts ${S}/arch/arm64/boot/dts/ti/
