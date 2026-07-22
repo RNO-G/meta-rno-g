@@ -19,6 +19,6 @@ RDEPENDS:${PN} = " \
   libdidaq libdidaq-examples \
   rno-g-loader \
   packagegroup-eevanescent \
-  libconfig libconfiv-dev \
+  libconfig libconfig-dev \
 "
 
