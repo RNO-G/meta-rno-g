@@ -2,7 +2,7 @@ SUMMARY = "LTE stuff for RNO-G Rev N"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-PR="r1"
+PR="r2"
 
 SRC_URI = "file://10-wwan0.link file://90-lte.rules file://is-lte-up file://rno-g-lte-trigger file://rno-g-lted.service file://rno-g-lted.py file://setup-lte "
 

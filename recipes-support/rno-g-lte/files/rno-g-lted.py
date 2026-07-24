@@ -44,15 +44,16 @@ def rl():
     return r
 
 def moni():
-    acm.write("AT#MONI\r\n".encode("utf-8"));
-    res = "None\r\n"
-    line = None
-    while line != "OK\r\n":
-        line = rl();
-        if line.startswith("#MONI"):
-            res = line
-    moni_file.write(str(time.time())+":"+res);
-    moni_file.flush()
+    try:
+        ("AT#MONI\r\n".encode("utf-8"));
+        res = "None\r\n"
+        line = None
+        while line != "OK\r\n":
+            line = rl();
+            if line.startswith("#MONI"):
+                res = line
+        moni_file.write(str(time.time())+":"+res);
+        moni_file.flush()
 
 def interruptible_sleep(t, max_sleep =1):
     global interrupt_flag
@@ -230,6 +231,7 @@ if __name__=="__main__":
         notifier.notify("WATCHDOG=1")
 
         if not check_serial():
+            print ("check serial failed ")
             if acm is not None:
                 acm.close()
                 acm = None
@@ -243,15 +245,17 @@ if __name__=="__main__":
             ntries = 0;
             while acm is None:
                try:
-                   print("Opening serial")
-                   time.sleep(10)
+                   print("Opening serial (try %d) % (ntries)")
+                   time.sleep(5)
                    open_serial()
-                   time.sleep(3)
+                   print ("it opened")
+                   time.sleep(5)
                    check_ok("AT\r\n")
                    time.sleep(1)
                except IOError:
                    print("error while reading serial (try %d) " % (ntries))
                    ntries+=1
+                   time.sleep(10*ntries)
                    if (ntries > 3):
                        reboot_modem_via_uc();
                        time.sleep(15)
@@ -262,12 +266,9 @@ if __name__=="__main__":
             if acm is None:
                 continue
 
-            if ENABLE_MONI:
-                moni()
             if not check_connection():
                 interruptible_sleep(check_connection_sleep_amt)
             else:
-
                 print("Connection check failed")
                 time.sleep(5)
                 success= False;
@@ -289,6 +290,8 @@ if __name__=="__main__":
                     acm = None
                     time.sleep(30)
 
+            if ENABLE_MONI:
+                moni()
 
         gc.collect()
 
