@@ -12,6 +12,6 @@ SRC_URI = "file://90-hw-groups.rules"
 
 do_install() {
        install -d ${D}${sysconfdir}/udev/rules.d
-       install ${WORKDIR}/90-hw-groups.rules ${D}${sysconfdir}/udev/rules.d
+       install -m 0644 ${WORKDIR}/90-hw-groups.rules ${D}${sysconfdir}/udev/rules.d
 }
 
