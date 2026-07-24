@@ -4,6 +4,7 @@ Description=Aggressively try to connect to LTE
 [Service]
 ExecStart=/rno-g/bin/rno-g-lted 
 ExecReload=kill -USR1 $MAINPID
+Environment=PYTHONUNBUFFERED=1
 Restart=always
 WatchdogSec=300 
 RestartSec=3

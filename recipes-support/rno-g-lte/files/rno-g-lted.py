@@ -44,16 +44,15 @@ def rl():
     return r
 
 def moni():
-    try:
-        ("AT#MONI\r\n".encode("utf-8"));
-        res = "None\r\n"
-        line = None
-        while line != "OK\r\n":
-            line = rl();
-            if line.startswith("#MONI"):
-                res = line
-        moni_file.write(str(time.time())+":"+res);
-        moni_file.flush()
+    wl("AT#MONI\r\n")
+    res = "None\r\n"
+    line = None
+    while line != "OK\r\n":
+        line = rl();
+        if line.startswith("#MONI"):
+            res = line
+    moni_file.write(str(time.time())+":"+res);
+    moni_file.flush()
 
 def interruptible_sleep(t, max_sleep =1):
     global interrupt_flag
