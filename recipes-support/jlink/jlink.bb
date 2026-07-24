@@ -2,6 +2,7 @@
 SUMMARY = "Segger J-Link Commander and SDK"
 
 LICENSE = "CLOSED"
+PR="r1"
 
 #LIC_FILES_CHKSUM = "file://Doc/LicenseIncGUI.txt;md5=1c58002b205eaa0d9413d9799665fca2"
 
@@ -37,7 +38,7 @@ do_install() {
 
 
 			install -d ${D}/${sysconfdir}/udev/rules.d
-      install ${S}/99-jlink.rules ${D}/${sysconfdir}/udev/rules.d
+      install -m 0644 ${S}/99-jlink.rules ${D}/${sysconfdir}/udev/rules.d
 
 }
 
