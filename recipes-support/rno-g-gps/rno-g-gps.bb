@@ -2,7 +2,7 @@ SUMMARY = "GPS stuff for RNO-G RevN"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
 
-PR="r12"
+PR="r13"
 
 SRC_URI = "file://10-ubx-setup.conf file://10-ubx-env.sh file://rno-g-gps-setup file://rno-g-record-gps file://rno-g-record-gps.service file://rotatelogs-compress-helper"
 
