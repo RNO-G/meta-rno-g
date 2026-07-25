@@ -244,7 +244,7 @@ if __name__=="__main__":
             ntries = 0;
             while acm is None:
                try:
-                   print("Opening serial (try %d) % (ntries)")
+                   print("Opening serial (try %d)" % (ntries))
                    time.sleep(5)
                    open_serial()
                    print ("it opened")
