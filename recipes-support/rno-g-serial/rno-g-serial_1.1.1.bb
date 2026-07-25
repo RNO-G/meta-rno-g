@@ -16,8 +16,10 @@ do_install() {
 
          install -d ${D}/rno-g/share
          install -m 0644 ${WORKDIR}/controller-keywords ${D}/rno-g/share
+
+         install -d  -m 0777 ${D}/rno-g/var/log
 }
 
-FILES:${PN} += "${sysconfdir}/udev/rules.d/99-rno-g-uarts.rules /rno-g/bin/controller-console  /rno-g/share/controller-keywords "
+FILES:${PN} += "${sysconfdir}/udev/rules.d/99-rno-g-uarts.rules /rno-g/bin/controller-console  /rno-g/share/controller-keywords /rno-g/var/log "
 
 RDEPENDS:${PN} = " bash util-linux rlwrap ncurses-terminfo socat "

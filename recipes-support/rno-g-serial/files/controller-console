@@ -21,7 +21,7 @@ trap  'echo "exiting..."'  SIGINT SIGTERM
 # make sure killing this shell kills cat
 
 echo "[[ RNO-G Controller Board Console ]]"
-rlwrap -e '' -C controller-console -b $'' -f /rno-g/share/controller-keywords socat - ${TTY}
+rlwrap -e '' -C controller-console -b $'' -f /rno-g/share/controller-keywords socat -v - ${TTY} 2>>/rno-g/var/log/controller-`date -I`.log
 flock -u ${controller_fd}
 echo "...bye"
 
