@@ -4,9 +4,10 @@ LICENSE="MIT"
 
 PR="r4"
 
-inherit packagegroup
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
+
+inherit packagegroup
 
 RDEPENDS:${PN} = " \
   rno-g-user   \
