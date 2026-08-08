@@ -2,7 +2,7 @@ DESCRIPTION = "RNO-G specific packages"
 LICENSE="MIT"
 
 
-PR="r4"
+PR="r5"
 
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
@@ -21,5 +21,7 @@ RDEPENDS:${PN} = " \
   rno-g-loader \
   packagegroup-eevanescent \
   libconfig libconfig-dev \
+  librno-g librno-g-utils librno-g-dev \
+  \
 "
 
