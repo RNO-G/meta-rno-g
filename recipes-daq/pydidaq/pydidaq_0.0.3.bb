@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/ejobe/pydidaq"
 LICENSE = "CLOSED"
 PR = "r0"
 SRC_URI = "git://github.com/ejobe/pydidaq.git;protocol=https;branch=main"
-SRCREV = "7fc6f3c2c8bf9cc65b40b63cea1db12899f00ec0"
+SRCREV = "27191e20381611994887d3a38dfe1b71ce29343b"
 DEBIAN_NOAUTONAME:${PN} = "1"
 
 inherit python3targetconfig
@@ -41,11 +41,16 @@ do_install() {
   install -m 0644 ${S}/config/Si5338-didaq-rev2-Registers.h ${D}/rno-g/share/didaq/config
   sed -i 'config/Si5338|/rno-g/share/didaq/config/Si5338|' ${D}/${RNO_G_SITE_PACKAGES}/didaq_serial/didaq_i2c.py
 
-# propgrams we will run regularly go to /rno-g/bin, get renamed and get a shebang added
+# programs we will run regularly go to /rno-g/bin, get renamed and get a shebang added
 
    echo "#!/usr/bin/env python3" > ${D}/rno-g/bin/didaq-startup
    cat ${S}/startup_didaq.py  >>  ${D}/rno-g/bin/didaq-startup
    chmod 0755 ${D}/rno-g/bin/didaq-startup
+
+   echo "#!/usr/bin/env python3" > ${D}/rno-g/bin/didaq-adc-config
+   cat ${S}/didaq_serial/didaq_adc_config.py  >>  ${D}/rno-g/bin/didaq-adc-config
+   chmod 0755 ${D}/rno-g/bin/didaq-adc-config
+
 
 
    echo "#!/usr/bin/env python3" > ${D}/rno-g/bin/didaq-log-temps
@@ -77,5 +82,5 @@ RDEPENDS:${PN}-utils  = " ${PN}-serial "
 FILES:${PN} = " ${RNO_G_SITE_PACKAGES}/didaq.py ${RNO_G_SITE_PACKAGES}/didaq_adc_spi.py /rno-g/share/didaq/config/Si5338-didaq-rev2-Registers.h"
 FILES:${PN}-serial = " ${RNO_G_SITE_PACKAGES}/didaq_serial/didaq_debug.py ${RNO_G_SITE_PACKAGES}/didaq_serial/didaq_adc_config.py ${RNO_G_SITE_PACKAGES}/didaq_serial/didaq_i2c.py "
 FILES:${PN}-fw = "/rno-g/share/didaq/fw/20260625.rpd"
-FILES:${PN}-utils = " ${RNO_G_SITE_PACKAGES}/didaq_data_spi.py  /rno-g/bin/didaq-startup /rno-g/bin/didaq-log-temps /rno-g/bin/didaq-write-application-image "
+FILES:${PN}-utils = " ${RNO_G_SITE_PACKAGES}/didaq_data_spi.py  /rno-g/bin/didaq-startup /rno-g/bin/didaq-log-temps /rno-g/bin/didaq-write-application-image  /rno-g/bin/didaq-adc-config"
 FILES:${PN}-serial-utils = "/rno-g/bin/didaq-serial-scan-threshold ${RNO_G_SITE_PACKAGES}/didaq_serial/didaq_data.py ${RNO_G_SITE_PACKAGES}/didaq_serial/didaq_rf_trig.py "
