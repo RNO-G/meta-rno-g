@@ -1,0 +1,14 @@
+[Unit]
+Description=Restarts the USBHUB
+After=dev-ttyController.device
+BindsTo=dev-ttyController.device
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+# this makes sure it's on
+ExecStart=/bin/sh -c 'echo "#USBHUB_RESET" > /dev/ttyController'
+
+[Install]
+WantedBy=multi-user.target

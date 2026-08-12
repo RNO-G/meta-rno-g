@@ -3,8 +3,14 @@ HOMEPAGE = "https://github.com/ejobe/pydidaq"
 LICENSE = "CLOSED"
 PR = "r0"
 SRC_URI = "git://github.com/ejobe/pydidaq.git;protocol=https;branch=main"
+SRC_URI += "file://didaq-on.service file://reset-usbhub.servive" 
 SRCREV = "27191e20381611994887d3a38dfe1b71ce29343b"
 DEBIAN_NOAUTONAME:${PN} = "1"
+
+inherit systemd
+SYSTEMD_SERVICE:${PN} = "reset-usbhub.service didaq-on.service"
+#SYSTEMD_AUTO_ENABLE:${PN} = "enable"
+
 
 inherit python3targetconfig
 
@@ -69,6 +75,11 @@ do_install() {
 # firmware goes here, I guess?
   install -d  ${D}/rno-g/share/didaq/fw/
   install -m 0644 ${S}/fw/didaqfw_0xe3000030.rpd ${D}/rno-g/share/didaq/fw/20260625.rpd
+
+ #services
+ install -d ${D}${systemd_system_unitdir}
+ install -m 0644 ${WORKDIR}/reset-usbhub.service ${D}${systemd_system_unitdir}/
+ install -m 0644 ${WORKDIR}/didaq-on.service ${D}${systemd_system_unitdir}/
 }
 
 
