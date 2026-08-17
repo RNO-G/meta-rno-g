@@ -3,7 +3,7 @@ HOMEPAGE = "https://rno-g.org"
 LICENSE = "GPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 PV="1.0.0"
-PR="r0"
+PR="r1"
 COMPATIBLE_MACHINE = "rno-g-revn"
 
 EXTRA_OEMAKE:append = " MACHINE='${MACHINE}'"
@@ -43,6 +43,9 @@ do_install() {
     rm -rf ${D}/data
     rm -rf ${D}/etc/polkit-1
     rm -rf ${D}/rno-g/run
+
+    # fixup permissions
+    chown root:root ${D}/rno-g/bin
 }
 
 
