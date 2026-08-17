@@ -3,7 +3,8 @@ HOMEPAGE = "https://rno-g.org"
 LICENSE = "GPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 PV="1.0.0"
-PR="r1"
+PR="r3"
+COMPATIBLE_MACHINE = "rno-g-revn"
 
 SRC_URI = "git://github.com/rno-g/librno-g.git;protocol=https;branch=didaq"
 
@@ -11,6 +12,8 @@ SRCREV = "${AUTOREV}"
 DEBIAN_NOAUTONAME:${PN} = "1"
 
 
+
+EXTRA_OEMAKE:append = " MACHINE='${MACHINE}'"
 SYSROOT_DIRS:append = " /rno-g "
 
 TARGET_CFLAGS:prepend = " -I${RECIPE_SYSROOT}/rno-g/include "
