@@ -17,8 +17,8 @@ do_install() {
          install -d ${D}/rno-g/share
          install -m 0644 ${WORKDIR}/controller-keywords ${D}/rno-g/share
 
-         install -d -u rno-g -g rno-g ${D}/rno-g/var
-         install -d -u rno-g -g rno-g -{D}/rno-g/var/log
+         install -d -o rno-g -g rno-g ${D}/rno-g/var
+         install -d -o rno-g -g rno-g -{D}/rno-g/var/log
 }
 
 FILES:${PN} += "${sysconfdir}/udev/rules.d/99-rno-g-uarts.rules /rno-g/bin/controller-console  /rno-g/share/controller-keywords /rno-g/var/log "
