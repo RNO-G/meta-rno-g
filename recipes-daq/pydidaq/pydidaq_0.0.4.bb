@@ -3,7 +3,7 @@ HOMEPAGE = "https://github.com/ejobe/pydidaq"
 LICENSE = "CLOSED"
 PR = "r0"
 SRC_URI = "git://github.com/ejobe/pydidaq.git;protocol=https;branch=main"
-SRC_URI += "file://didaq-on.service file://reset-usbhub.servive" 
+SRC_URI += "file://didaq-on.service file://reset-usbhub.service"
 SRCREV = "27191e20381611994887d3a38dfe1b71ce29343b"
 DEBIAN_NOAUTONAME:${PN} = "1"
 
