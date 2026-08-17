@@ -2,7 +2,7 @@ DESCRIPTION = "EeVanescent included packages"
 LICENSE="MIT"
 
 
-PR="r5"
+PR="r6"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit packagegroup
