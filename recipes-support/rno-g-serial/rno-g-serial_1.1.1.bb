@@ -1,7 +1,7 @@
 SUMMARY = "Custom udev rules for rno-g hardware"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-PR="r2"
+PR="r3"
 
 
 SRC_URI = "file://99-rno-g-uarts.rules file://controller-console file://controller-keywords "
@@ -17,9 +17,11 @@ do_install() {
          install -d ${D}/rno-g/share
          install -m 0644 ${WORKDIR}/controller-keywords ${D}/rno-g/share
 
-         install -d  -m 0777 ${D}/rno-g/var/log
+         install -d -u rno-g -g rno-g ${D}/rno-g/var
+         install -d -u rno-g -g rno-g -{D}/rno-g/var/log
 }
 
 FILES:${PN} += "${sysconfdir}/udev/rules.d/99-rno-g-uarts.rules /rno-g/bin/controller-console  /rno-g/share/controller-keywords /rno-g/var/log "
 
+DEPENDS = " rno-g-user "
 RDEPENDS:${PN} = " bash util-linux rlwrap ncurses-terminfo socat "
