@@ -43,6 +43,8 @@ do_install() {
      # append correct pythonpath to profile
      echo "export PYTHONPATH=\"\$PYTHONPATH:${RNO_G_SITE_PACKAGES}\"" >> ${D}/etc/profile.d/00-rno-g.sh
 
+     # alias python to python3
+     echo "alias python=python3" >> ${D}/etc/profile.d/00-rno-g.sh
 
      # correct ldconfig
      install -d ${D}/etc/ld.so.conf.d/

@@ -23,7 +23,7 @@ u-boot-tools libubootenv  \
 man-db jlink uhubctl \
 nmap bmon \
 cowsay fuck-vscode nano smem \
-libgpios libgpios-examples \
+libgpios libgpios-dev libgpios-examples \
 lsof \
 mosquitto-clients \
 emmcparm sbdm-cli \
