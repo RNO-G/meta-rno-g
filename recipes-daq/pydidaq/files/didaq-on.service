@@ -6,12 +6,8 @@ Requires=gpsd.service create-rno-g-dir@-rno-g-run-didaq.service reset-usbhub.ser
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-
 Environment=DIDAQ_INFO_DIR=/rno-g/run/didaq
-
-#make sure have site-packages
-EnvironmentFile=/etc/profile.d/00-rno-g.sh
-
+Environment=PYTHONPATH=/rno-g/lib/python3.12/site-packages/
 # this makes sure it's on
 ExecStartPre=/bin/gpioset -t0 NSPIBUS_EN=0 5V2_EN=0
 ExecStartPre=/bin/sleep 3
