@@ -1,7 +1,7 @@
 [Unit]
 Description=Turn on DIDAQ
-After=gpsd.service create-rno-g-dir@-rno-g-run-didaq.service reset-usbhub.service
-Requires=gpsd.service create-rno-g-dir@-rno-g-run-didaq.service reset-usbhub.service
+After=gpsd.service create-rno-g-dir@-rno\x2dg-run-didaq.service reset-usbhub.service
+Requires=gpsd.service create-rno-g-dir@-rno\x2dg-run-didaq.service reset-usbhub.service
 
 [Service]
 Type=oneshot
