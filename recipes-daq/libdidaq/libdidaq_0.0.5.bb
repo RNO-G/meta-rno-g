@@ -2,7 +2,7 @@ SUMMARY = "DIDAQ library"
 HOMEPAGE = "https://github.com/rno-g/libdidaq"
 LICENSE = "GPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
-PR = "r0"
+PR = "r1"
 SRC_URI = "git://github.com/rno-g/libdidaq.git;protocol=https;branch=main"
 
 SRCREV = "${AUTOREV}"
