@@ -7,6 +7,7 @@ SRCREV = "27191e20381611994887d3a38dfe1b71ce29343b"
 DEBIAN_NOAUTONAME:${PN} = "1"
 
 
+S = "${WORKDIR}/git"
 
 do_compile() {
 }
