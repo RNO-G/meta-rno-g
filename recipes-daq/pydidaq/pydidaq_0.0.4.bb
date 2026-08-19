@@ -45,7 +45,7 @@ do_install() {
 #fixup hardcoded path in didaq_i2c, and put the header somewhere
   install -d ${D}/rno-g/share/didaq/config
   install -m 0644 ${S}/config/Si5338-didaq-rev2-Registers.h ${D}/rno-g/share/didaq/config
-  sed -i 'config/Si5338|/rno-g/share/didaq/config/Si5338|' ${D}/${RNO_G_SITE_PACKAGES}/didaq_serial/didaq_i2c.py
+  sed -i 's|config/Si5338|/rno-g/share/didaq/config/Si5338|' ${D}/${RNO_G_SITE_PACKAGES}/didaq_serial/didaq_i2c.py
 
 # programs we will run regularly go to /rno-g/bin, get renamed and get a shebang added
 
