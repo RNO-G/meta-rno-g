@@ -9,7 +9,7 @@ RemainAfterExit=yes
 Environment=DIDAQ_INFO_DIR=/rno-g/run/didaq
 
 # this makes sure it's on
-ExecStartPre=/bin/gpioset -t0 NSPIBUS=0 5V2_EN=0
+ExecStartPre=/bin/gpioset -t0 NSPIBUS_EN=0 5V2_EN=0
 ExecStartPre=/bin/sleep 3
 ExecStart=/rno-g/bin/didaq-startup
 #stopping tihs process will turn off the DIDAQ?
