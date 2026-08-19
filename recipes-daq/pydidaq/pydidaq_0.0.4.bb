@@ -81,7 +81,7 @@ do_install() {
 
 RDEPENDS:${PN} = " rno-g-tweaks python3-spidev python3-pyserial "
 
-PACKAGES =+ " ${PN}-serial $${PN}-utils ${PN}-serial-utils "
+PACKAGES=+" ${PN}-serial ${PN}-utils ${PN}-serial-utils "
 
 RDEPENDS:${PN} += " ${PN}-utils "
 RDEPENDS:${PN}-utils  = " ${PN}-serial "
