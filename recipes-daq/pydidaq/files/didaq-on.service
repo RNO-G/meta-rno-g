@@ -10,7 +10,7 @@ Environment=DIDAQ_INFO_DIR=/rno-g/run/didaq
 Environment=PYTHONPATH=/rno-g/lib/python3.12/site-packages/
 # this makes sure it's on
 ExecStartPre=/bin/gpioset -t0 NSPIBUS_EN=0 5V2_EN=0
-ExecStartPre=/bin/sleep 3
+ExecStartPre=/bin/sleep 5
 ExecStart=/rno-g/bin/didaq-startup
 #stopping tihs process will turn off the DIDAQ?
 ExecStopPost=/bin/gpioset -t0 5V2_EN=1
