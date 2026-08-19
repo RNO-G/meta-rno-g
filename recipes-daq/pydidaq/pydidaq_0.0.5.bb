@@ -1,10 +1,10 @@
 SUMMARY = "pydidaq library"
 HOMEPAGE = "https://github.com/ejobe/pydidaq"
 LICENSE = "CLOSED"
-PR = "r4"
-SRC_URI = "git://github.com/ejobe/pydidaq.git;protocol=https;branch=main"
+PR = "r0"
+SRC_URI = "git://github.com/ejobe/pydidaq.git;protocol=https;branch=flock"
 SRC_URI += "file://didaq-on.service file://reset-usbhub.service"
-SRCREV = "27191e20381611994887d3a38dfe1b71ce29343b"
+SRCREV = "79eeef13bd9cdd430d6b137207fcc05a599dd432"
 DEBIAN_NOAUTONAME:${PN} = "1"
 
 inherit systemd
