@@ -1,4 +1,4 @@
-SUMMARY = "pydidaq firmware"
+SUMMARY = "didaq firmware"
 HOMEPAGE = "https://github.com/ejobe/pydidaq"
 LICENSE = "CLOSED"
 PR = "r0"
@@ -10,7 +10,6 @@ DEBIAN_NOAUTONAME:${PN} = "1"
 
 do_compile() {
 }
-
 
 
 do_install() {
