@@ -1,7 +1,7 @@
 SUMMARY = "pydidaq library"
 HOMEPAGE = "https://github.com/ejobe/pydidaq"
 LICENSE = "CLOSED"
-PR = "r2"
+PR = "r3"
 SRC_URI = "git://github.com/ejobe/pydidaq.git;protocol=https;branch=flock"
 SRC_URI += "file://didaq-on.service file://reset-usbhub.service"
 SRCREV = "79eeef13bd9cdd430d6b137207fcc05a599dd432"
@@ -9,7 +9,7 @@ DEBIAN_NOAUTONAME:${PN} = "1"
 
 inherit systemd
 SYSTEMD_SERVICE:${PN} = "reset-usbhub.service didaq-on.service"
-#SYSTEMD_AUTO_ENABLE:${PN} = "enable"
+SYSTEMD_AUTO_ENABLE:${PN} = "disable"
 
 
 inherit python3targetconfig
