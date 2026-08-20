@@ -13,7 +13,7 @@ SYSTEMD_SERVICE:${PN} = "rno-g-acq.service rno-g-copy.service rno-g-copy-meta.se
 
 SRC_URI = "git://github.com/rno-g/rno-g-ice-software.git;protocol=https;branch=didaq-support"
 SRC_URI += " file://10-didaq-setup.conf file://20-dirs.conf "
-SYSTEMD_AUTO_ENABLE:${PN} = "enable"
+SYSTEMD_AUTO_ENABLE:${PN} = "disable"
 
 SRCREV = "${AUTOREV}"
 DEBIAN_NOAUTONAME:${PN} = "1"
