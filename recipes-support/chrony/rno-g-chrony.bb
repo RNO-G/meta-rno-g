@@ -1,7 +1,7 @@
 SUMMARY = "Custom monotonic boot configuration for Chrony"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-PR="r2"
+PR="r3"
 
 SRC_URI += "file://97-monotonic.conf"
 SRC_URI += "file://98-rno-g-ntp.conf"
@@ -23,9 +23,9 @@ do_install() {
 pkg_postinst_ontarget:${PN} () {
 
     # disable ipv4, and enable dropin directory
-    if [ -f ${D}${sysconfdir}/sysconfig/chronyd ]; then
+    if [ -f /etc/sysconfig/chronyd ]; then
         # Replaces '-F 2"' with '-F 2 -4 -d /etc/chrony.d"'
-        sed -i 's/-F 2"/-F 2 -4 -d \/etc\/chrony.d"/' ${sysconfdir}/sysconfig/chronyd
+        sed -i 's/-F 2"/-F 2 -4 -d \/etc\/chrony.d"/' /etc/sysconfig/chronyd
     fi
 
     # restart chronyd
