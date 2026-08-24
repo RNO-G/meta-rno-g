@@ -18,5 +18,5 @@ do_install() {
     chmod 0750 ${D}/data/chrony
 }
 
-FILES:${PN} = "${sysconfdir}/chrony.d/97-monotonic.conf ${sysconfdir}/chrony.d/98-rno-g-ntp.conf  ${sysconfgdir}/chrony.d/99-gps.conf /data/chrony"
+FILES:${PN} = "${sysconfdir}/chrony.d/97-monotonic.conf ${sysconfdir}/chrony.d/98-rno-g-ntp.conf  ${sysconfdir}/chrony.d/99-gps.conf /data/chrony"
 
