@@ -3,7 +3,7 @@ HOMEPAGE = "https://rno-g.org"
 LICENSE = "GPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 PV="1.0.0"
-PR="r2"
+PR="r4"
 COMPATIBLE_MACHINE = "rno-g-revn"
 
 EXTRA_OEMAKE:append = " MACHINE='${MACHINE}'"
@@ -44,12 +44,16 @@ do_install() {
     rm -rf ${D}/etc/polkit-1
     rm -rf ${D}/rno-g/run
 
+    install ${WORKDIR}/scripts/show_runs.sh ${D}/rno-g/bin/rno-g-show-runs
+
+
     # fixup permissions
     chown root:root ${D}/rno-g/bin
 }
 
 
 DEPENDS = " libdidaq zlib libgpios librno-g rno-g-user libconfig systemd "
+REDPENDS:$PN += "libdidaq librno-g libconfig systemd gpioset-service"
 
 FILES:${PN}= " /rno-g/bin/* /rno-g/cfg/default/*  /rno-g/cfg/overrides.json /rno-g/cfg/var/calib_channel.state "
 FILES:${PN}+= " /rno-g/var/calib_channel.state /etc/systemd/system/rno-g*"
