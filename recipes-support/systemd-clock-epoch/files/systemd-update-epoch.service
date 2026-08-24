@@ -1,0 +1,8 @@
+[Unit]
+Description=Update clock-epoch
+After=chronyd.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/touch -m /usr/lib/clock-epoch
+

@@ -1,0 +1,11 @@
+[Unit]
+Description=Run clock-epoch updater
+
+[Timer]
+OnBootSec=15min
+OnUnitActiveSec=10min
+AccuracySec=1m
+
+[Install]
+WantedBy=timers.target
+
