@@ -7,8 +7,6 @@ SRC_URI += "file://97-monotonic.conf"
 SRC_URI += "file://98-rno-g-ntp.conf"
 SRC_URI += "file://99-gps.conf"
 
-DEPENDS  += "chrony"
-RDEPENDS:${PN} = "chrony"
 
 do_install() {
     install -d ${D}${sysconfdir}/chrony.d
@@ -17,7 +15,6 @@ do_install() {
     install -m 0644 ${WORKDIR}/99-gps.conf ${D}${sysconfdir}/chrony.d/
 
     install -d ${D}$/data/chrony
-    chown chrony:chrony ${D}/data/chrony
     chmod 0750 ${D}/data/chrony
 }
 
