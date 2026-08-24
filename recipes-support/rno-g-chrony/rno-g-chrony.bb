@@ -1,9 +1,9 @@
 SUMMARY = "Custom monotonic boot configuration for Chrony"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-PR="r5"
+PR="r6"
 
-SRC_URI += "file://97-monotonic.conf"
+SRC_URI += "file://97-non-volatile.conf"
 SRC_URI += "file://98-rno-g-ntp.conf"
 SRC_URI += "file://99-gps.conf"
 
