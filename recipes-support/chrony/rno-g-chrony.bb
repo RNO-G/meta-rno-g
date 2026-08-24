@@ -17,6 +17,7 @@ do_install() {
     install -d ${D}/data/chrony
     chmod 0750 ${D}/data/chrony
 
+}
 
 
 pkg_postinst_ontarget:${PN} () {
