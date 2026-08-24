@@ -25,7 +25,7 @@ pkg_postinst_ontarget:${PN} () {
     # disable ipv4, and enable dropin directory
     if [ -f ${D}${sysconfdir}/sysconfig/chronyd ]; then
         # Replaces '-F 2"' with '-F 2 -4 -d /etc/chrony.d"'
-        sed -i 's/-F 2"/-F 2 -4 -d \/etc\/chrony.d"/' ${D}${sysconfdir}/sysconfig/chronyd
+        sed -i 's/-F 2"/-F 2 -4 -d \/etc\/chrony.d"/' ${sysconfdir}/sysconfig/chronyd
     fi
 
     # restart chronyd
