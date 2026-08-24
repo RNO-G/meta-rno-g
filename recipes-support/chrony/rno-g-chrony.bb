@@ -1,11 +1,12 @@
 SUMMARY = "Custom monotonic boot configuration for Chrony"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-PR="r3"
+PR="r4"
 
 SRC_URI += "file://97-monotonic.conf"
 SRC_URI += "file://98-rno-g-ntp.conf"
 SRC_URI += "file://99-gps.conf"
+SRC_URI += "file://etc-default-chronyd"
 
 
 do_install() {
@@ -17,24 +18,21 @@ do_install() {
     install -d ${D}/data/chrony
     chmod 0750 ${D}/data/chrony
 
+
+    install -d ${D}/${sysconfdir}/default
+    install -m 0644 ${WORKDIR}/etc-default-chronyd ${D}/${sysconfdir}/default/chronyd
+
 }
 
 
 pkg_postinst_ontarget:${PN} () {
-
-    # disable ipv4, and enable dropin directory
-    if [ -f /etc/sysconfig/chronyd ]; then
-        # Replaces '-F 2"' with '-F 2 -4 -d /etc/chrony.d"'
-        sed -i 's/-F 2"/-F 2 -4 -d \/etc\/chrony.d"/' /etc/sysconfig/chronyd
-    fi
-
     # restart chronyd
     if systemctl is-active --quiet chronyd; then
         systemctl restart chronyd
     fi
 }
 
-FILES:${PN} = "${sysconfdir}/chrony.d/97-monotonic.conf ${sysconfdir}/chrony.d/98-rno-g-ntp.conf  ${sysconfdir}/chrony.d/99-gps.conf /data/chrony"
+FILES:${PN} = "${sysconfdir}/chrony.d/97-monotonic.conf ${sysconfdir}/chrony.d/98-rno-g-ntp.conf  ${sysconfdir}/chrony.d/99-gps.conf /data/chrony ${sysconfdir}/default/chronyd"
 
 
 
