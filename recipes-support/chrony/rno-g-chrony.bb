@@ -1,7 +1,7 @@
 SUMMARY = "Custom monotonic boot configuration for Chrony"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-PR="r0"
+PR="r1"
 
 SRC_URI += "file://97-monotonic.conf"
 SRC_URI += "file://98-rno-g-ntp.conf"
@@ -18,5 +18,13 @@ do_install() {
     chmod 0750 ${D}/data/chrony
 }
 
+pkg_postinst_ontarget:${PN} () {
+    if systemctl is-active --quiet chronyd; then
+        systemctl restart chronyd
+    fi
+}
+
 FILES:${PN} = "${sysconfdir}/chrony.d/97-monotonic.conf ${sysconfdir}/chrony.d/98-rno-g-ntp.conf  ${sysconfdir}/chrony.d/99-gps.conf /data/chrony"
+
+
 
