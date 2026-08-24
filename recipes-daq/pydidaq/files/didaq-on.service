@@ -8,7 +8,7 @@ Type=oneshot
 RemainAfterExit=yes
 Environment=DIDAQ_INFO_DIR=/rno-g/run/didaq
 Environment=PYTHONPATH=/rno-g/lib/python3.12/site-packages/
-Enviroment=PYTHONUBUFFERED=1
+Environment=PYTHONUBUFFERED=1
 # this makes sure it's on
 ExecStartPre=/bin/gpioset -t0 NSPIBUS_EN=0 5V2_EN=0
 ExecStartPre=/bin/sleep 5
