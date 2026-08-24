@@ -14,7 +14,7 @@ do_install() {
     install -m 0644 ${WORKDIR}/98-rno-g-ntp.conf ${D}${sysconfdir}/chrony.d/
     install -m 0644 ${WORKDIR}/99-gps.conf ${D}${sysconfdir}/chrony.d/
 
-    install -d ${D}$/data/chrony
+    install -d ${D}/data/chrony
     chmod 0750 ${D}/data/chrony
 }
 
