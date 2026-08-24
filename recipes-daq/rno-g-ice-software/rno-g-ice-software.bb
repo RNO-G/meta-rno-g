@@ -44,7 +44,7 @@ do_install() {
     rm -rf ${D}/etc/polkit-1
     rm -rf ${D}/rno-g/run
 
-    install ${WORKDIR}/scripts/show_runs.sh ${D}/rno-g/bin/rno-g-show-runs
+    install ${S}/scripts/show_runs.sh ${D}/rno-g/bin/rno-g-show-runs
 
 
     # fixup permissions
