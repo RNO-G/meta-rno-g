@@ -2,7 +2,7 @@ DESCRIPTION = "RNO-G specific packages"
 LICENSE="MIT"
 
 
-PR="r5"
+PR="r6"
 
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
@@ -17,6 +17,7 @@ RDEPENDS:${PN} = " \
   rno-g-lte \
   rno-g-gps \
   rno-g-scripts \
+  rno-g-chrony \
   libdidaq libdidaq-examples \
   rno-g-loader \
   packagegroup-eevanescent \

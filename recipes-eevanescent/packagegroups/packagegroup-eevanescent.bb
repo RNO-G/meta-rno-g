@@ -2,7 +2,7 @@ DESCRIPTION = "EeVanescent included packages"
 LICENSE="MIT"
 
 
-PR="r6"
+PR="r7"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit packagegroup
@@ -28,6 +28,7 @@ lsof \
 mosquitto-clients \
 emmcparm sbdm-cli \
 gpioset-service \
+systemd-clock-epoch \
 cockpit-ws cockpit-systemd cockpit-shell \
 "
 
