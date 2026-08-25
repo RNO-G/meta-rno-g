@@ -1,11 +1,12 @@
 SUMMARY = "Custom monotonic boot configuration for Chrony"
 LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda2f7b4f302"
-PR="r10"
+PR="r11"
 
 SRC_URI += "file://97-nonvolatile.conf"
 SRC_URI += "file://98-rno-g-ntp.conf"
 SRC_URI += "file://99-gps.conf"
+SRC_URI += "file://10-wait-mount.conf"
 
 
 do_install() {
@@ -13,6 +14,10 @@ do_install() {
     install -m 0644 ${WORKDIR}/97-nonvolatile.conf ${D}${sysconfdir}/chrony.d/
     install -m 0644 ${WORKDIR}/98-rno-g-ntp.conf ${D}${sysconfdir}/chrony.d/
     install -m 0644 ${WORKDIR}/99-gps.conf ${D}${sysconfdir}/chrony.d/
+
+    #dropin
+    install -d ${D}${sysconfdir}/systemd/system/chronyd.service.d
+    install -m 0644 ${WORKDIR}/10-wait-mount.conf ${D}${sysconfdir}/systemd/system/chronyd.service.d/10-wait-mount.conf
 
     install -d ${D}/data/chrony
     chmod 0750 ${D}/data/chrony
