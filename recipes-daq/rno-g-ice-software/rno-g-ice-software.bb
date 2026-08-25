@@ -3,7 +3,7 @@ HOMEPAGE = "https://rno-g.org"
 LICENSE = "GPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 PV="1.0.0"
-PR="r4"
+PR="r5"
 COMPATIBLE_MACHINE = "rno-g-revn"
 
 EXTRA_OEMAKE:append = " MACHINE='${MACHINE}'"
