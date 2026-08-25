@@ -43,7 +43,7 @@ pkg_postinst_ontarget:${PN} () {
     fi
 }
 
-FILES:${PN} = "${sysconfdir}/chrony.d/97-nonvolatile.conf ${sysconfdir}/chrony.d/98-rno-g-ntp.conf  ${sysconfdir}/chrony.d/99-gps.conf ${sysconfdir}/systemd/systemd/chronyd.service.d/10-wait-mount.conf /data/chrony"
+FILES:${PN} = "${sysconfdir}/chrony.d/97-nonvolatile.conf ${sysconfdir}/chrony.d/98-rno-g-ntp.conf  ${sysconfdir}/chrony.d/99-gps.conf ${sysconfdir}/systemd/system/chronyd.service.d/10-wait-mount.conf /data/chrony"
 
 
 
