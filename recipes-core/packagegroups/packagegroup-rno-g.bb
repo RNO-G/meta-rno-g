@@ -2,7 +2,7 @@ DESCRIPTION = "RNO-G specific packages"
 LICENSE="MIT"
 
 
-PR="r6"
+PR="r7"
 
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
@@ -23,6 +23,8 @@ RDEPENDS:${PN} = " \
   packagegroup-eevanescent \
   libconfig libconfig-dev \
   librno-g librno-g-utils librno-g-dev \
+  pydidaq pydidaq-utils pydidaq-serial pydidaq-serial-utils \
+  rno-g-ice-software \
   \
 "
 
