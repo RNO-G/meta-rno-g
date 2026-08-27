@@ -3,7 +3,7 @@ HOMEPAGE = "https://rno-g.org"
 LICENSE = "GPL-3.0-or-later"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=1ebbd3e34237af26da5dc08a4e440464"
 PV="1.0.0"
-PR="r5"
+PR="r6"
 COMPATIBLE_MACHINE = "rno-g-revn"
 
 EXTRA_OEMAKE:append = " MACHINE='${MACHINE}'"
@@ -53,7 +53,7 @@ do_install() {
 
 
 DEPENDS = " libdidaq zlib libgpios librno-g rno-g-user libconfig systemd "
-REDPENDS:$PN += "libdidaq librno-g libconfig systemd gpioset-service"
+REDPENDS:$PN += "libdidaq librno-g libconfig systemd gpioset-service pydidaq-serial pydidaq pydidaq-serial-utils "
 
 FILES:${PN}= " /rno-g/bin/* /rno-g/cfg/default/*  /rno-g/cfg/overrides.json /rno-g/cfg/var/calib_channel.state "
 FILES:${PN}+= " /rno-g/var/calib_channel.state /etc/systemd/system/rno-g*"
