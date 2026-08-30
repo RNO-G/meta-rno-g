@@ -280,7 +280,8 @@ if __name__=="__main__":
                         reconnections_since_working = 0
                     else:
                         success = not try_to_connect()
-                        if (success) reconnections_since_working +=1
+                        if success:
+                            reconnections_since_working +=1
                     if success:
                         time.sleep(5)
                         break
@@ -293,7 +294,7 @@ if __name__=="__main__":
                     acm = None
                     time.sleep(30)
 
-            if ENABLE_MONI and acm is not Noe:
+            if ENABLE_MONI and acm is not None:
                 moni()
 
         gc.collect()
