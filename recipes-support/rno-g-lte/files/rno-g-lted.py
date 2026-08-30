@@ -140,7 +140,7 @@ def try_to_connect():
     addrline = rl()
     rl() # blank line
     rl() # ok line
-  
+
     print(addrline)
     match = re.search('\+CGPADDR: 1,\"(\S+)\"',addrline)
     print(match)
@@ -287,9 +287,14 @@ if __name__=="__main__":
                         break
                     interruptible_sleep(30);
                 if not success or reconnections_since_working > 3:
-                    check_ok("AT+COPS=0\r\n") #make sure automatic network selection
+                    try:
+                        check_ok("AT+COPS=0\r\n", throw_exception = False) #make sure automatic network selection
+                    except (IOError, OSError) as e:
+                        print("COPS=0 failed, resetting anyway: %s" % e)
+
                     time.sleep(5)
                     reboot_modem()
+                    reconnections_since_working = 0
                     acm.close()
                     acm = None
                     time.sleep(30)
