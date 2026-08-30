@@ -223,6 +223,7 @@ if __name__=="__main__":
             print ("Using /rno-g/var/lte.log instead")
             moni_file = open("/rno-g/var/lte.log","a")
 
+    reconnections_since_working = 0
 
     while True:
         print("Kicking watchdog");
@@ -267,6 +268,7 @@ if __name__=="__main__":
 
             if not check_connection():
                 interruptible_sleep(check_connection_sleep_amt)
+                reconnections_since_working = 0
             else:
                 print("Connection check failed")
                 time.sleep(5)
@@ -275,13 +277,15 @@ if __name__=="__main__":
                     if not check_connection():
                         print("Connection check is actually ok")
                         success = True
+                        reconnections_since_working = 0
                     else:
                         success = not try_to_connect()
+                        if (success) reconnections_since_working +=1
                     if success:
                         time.sleep(5)
                         break
                     interruptible_sleep(30);
-                if not success:
+                if not success or reconnections_since_working > 3:
                     check_ok("AT+COPS=0\r\n") #make sure automatic network selection
                     time.sleep(5)
                     reboot_modem()
@@ -289,7 +293,7 @@ if __name__=="__main__":
                     acm = None
                     time.sleep(30)
 
-            if ENABLE_MONI:
+            if ENABLE_MONI and acm is not Noe:
                 moni()
 
         gc.collect()
