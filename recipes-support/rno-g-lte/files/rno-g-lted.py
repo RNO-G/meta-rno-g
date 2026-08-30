@@ -142,7 +142,7 @@ def try_to_connect():
     rl() # ok line
 
     print(addrline)
-    match = re.search('\+CGPADDR: 1,\"(\S+)\"',addrline)
+    match = re.search(r'\+CGPADDR: 1,\"(\S+)\"',addrline)
     print(match)
     if match == None or len(match.groups()) < 1:
         print ("Didn't get an IP?")
