@@ -257,6 +257,7 @@ if __name__=="__main__":
                    ntries+=1
                    time.sleep(10*ntries)
                    if (ntries > 3):
+                       acm = None
                        reboot_modem_via_uc();
                        time.sleep(15)
                        break
